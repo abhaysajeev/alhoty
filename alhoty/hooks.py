@@ -25,7 +25,7 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/alhoty/css/alhoty.css"
+app_include_css = "alhoty.bundle.css"
 # app_include_js = "/assets/alhoty/js/alhoty.js"
 
 # include js, css files in header of web template
@@ -84,6 +84,13 @@ app_license = "mit"
 
 # before_install = "alhoty.install.before_install"
 # after_install = "alhoty.install.after_install"
+
+# Fixtures
+# --------
+# Export fixtures for automatic installation
+fixtures = [
+    {"dt": "Res Access Config"}
+]
 
 # Uninstallation
 # ------------

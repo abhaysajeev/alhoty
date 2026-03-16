@@ -1,0 +1,120 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"cT7jL22bD-\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"MT Branch Inspection\",\"col\":12}}]",
+ "creation": "2026-03-15 17:55:44.624541",
+ "custom_blocks": [
+  {
+   "custom_block_name": "MT Branch Inspection",
+   "label": "MT Branch Inspection"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "tool",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "NDT Portal",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Client Master",
+   "link_count": 0,
+   "link_to": "Client Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Master",
+   "link_count": 0,
+   "link_to": "Project Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Equipment Master",
+   "link_count": 0,
+   "link_to": "Equipment Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Material Master",
+   "link_count": 0,
+   "link_to": "Material Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Branch Master",
+   "link_count": 0,
+   "link_to": "Branch Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Work Order",
+   "link_count": 0,
+   "link_to": "Work Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "MT Inspection",
+   "link_count": 0,
+   "link_to": "MT Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "MT Inspection Result",
+   "link_count": 0,
+   "link_to": "MT Inspection Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-03-15 21:04:32.679929",
+ "modified_by": "Administrator",
+ "module": "AL HOTY",
+ "name": "NDT Portal",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "res"
+  },
+  {
+   "role": "Administrator"
+  }
+ ],
+ "sequence_id": 0.0,
+ "shortcuts": [],
+ "title": "NDT Portal"
+}

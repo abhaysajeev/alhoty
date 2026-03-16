@@ -1,0 +1,89 @@
+/* 
+ * Workspace Fullscreen Override for Alhoty App
+ * This extends Frappe core styles without modifying them
+ * Targets workspace pages to remove padding and make custom HTML blocks full-screen
+ */
+
+/* Hide the page title (e.g., "NDT Portal") */
+[data-page-route="Workspaces"] .page-head {
+    display: none !important;
+}
+
+/* Remove left/right padding from page container */
+[data-page-route="Workspaces"] .page-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Remove padding from main section div */
+[data-page-route="Workspaces"] .main-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Remove container padding */
+[data-page-route="Workspaces"] .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Adjust layout height since page-head is hidden */
+@media (min-width: 992px) {
+    [data-page-route="Workspaces"] .layout-main {
+        height: calc(100vh - var(--navbar-height)) !important;
+    }
+}
+
+/* Remove border and padding from layout-main-section */
+[data-page-route="Workspaces"] .layout-main-section {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Remove padding from layout-main-section-wrapper */
+[data-page-route="Workspaces"] .layout-main-section-wrapper {
+    margin-top: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remove padding from editor container */
+[data-page-route="Workspaces"] .editor-js-container {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove padding from widget groups */
+[data-page-route="Workspaces"] .widget-group {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove padding from custom blocks */
+[data-page-route="Workspaces"] .widget.custom_block,
+[data-page-route="Workspaces"] .custom-block {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove padding from codex editor blocks */
+[data-page-route="Workspaces"] .codex-editor {
+    padding: 0 !important;
+}
+
+[data-page-route="Workspaces"] .codex-editor__redactor {
+    padding: 0 !important;
+}
+
+/* Ensure ce-block (editor blocks) have no padding */
+[data-page-route="Workspaces"] .ce-block {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Keep sidebar intact */
+[data-page-route="Workspaces"] .layout-side-section {
+    /* Preserve default sidebar styling */
+}

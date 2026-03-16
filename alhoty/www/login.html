@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlHoty Stanger - NDT Portal Login</title>
+  <!-- csrf_token -->
+  
+  <!-- Preload critical images for instant display -->
+  <link rel="preload" as="image" href="/assets/alhoty/images/login_background_placeholder.webp" type="image/webp" />
+  <link rel="preload" as="image" href="/assets/alhoty/images/login_background.webp" type="image/webp" />
+  <link rel="preload" as="image" href="/assets/alhoty/images/inspector.webp" type="image/webp" />
+  <link rel="preload" as="image" href="/assets/alhoty/images/alhoty_logo.png" type="image/png" />
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Figtree:wght@400;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: hsl(230, 30%, 92%);
+      padding: 40px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/alhoty/images/login_background_placeholder.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(20px);
+      transform: scale(1.1);
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/alhoty/images/login_background.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      z-index: -1;
+      animation: fadeInBackground 0.6s ease-out 0.1s forwards;
+    }
+
+    @keyframes fadeInBackground {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (min-resolution: 2dppx) {
+      body::after {
+        background-image: url('/assets/alhoty/images/login_background_hq.webp');
+      }
+    }
+
+    .login-card {
+      display: flex;
+      /* ── CHANGE 2b: grow with viewport but keep side margins via body padding ── */
+      width: 100%;
+      max-width: min(980px, calc(100vw - 80px));
+      max-height: calc(100vh - 80px);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* ─────────────────────────────────────────────
+       LEFT IMAGE PANEL
+    ───────────────────────────────────────────── */
+    .login-image {
+      flex: 1 1 50%;
+      min-height: 0;
+      /* ── CHANGE 1a: relative so the logo can be absolutely placed inside ── */
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      margin: 8px;
+    }
+
+    .login-image img.bg-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 65% center;
+      display: block;
+      border-radius: 20px;
+      opacity: 0;
+      animation: fadeIn 0.4s ease-out 0.05s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ── logo pinned to bottom-left of the image panel ── */
+    .image-logo {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .image-logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
+      opacity: 0;
+      animation: fadeIn 0.4s ease-out 0.1s forwards;
+    }
+
+    .image-logo-label {
+      margin-top: 10px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    /* ─────────────────────────────────────────────
+       RIGHT FORM PANEL
+    ───────────────────────────────────────────── */
+    .login-form-section {
+      flex: 1 1 50%;
+      padding: 28px 36px 24px;
+      display: flex;
+      flex-direction: column;
+      /* three zones: top logo strip, middle form, bottom footer */
+      justify-content: space-between;
+      max-width: 560px;
+    }
+
+    /* ── TOP ZONE: logo + brand name ── */
+    .form-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 20px;
+      /* thin line separates brand strip from form content below */
+      border-bottom: 1px solid hsl(220, 20%, 90%);
+      margin-bottom: 20px;
+    }
+
+    .form-header img {
+      height: 48px;
+      width: auto;
+      display: block;
+      opacity: 0;
+      animation: fadeIn 0.4s ease-out 0.1s forwards;
+    }
+
+    .form-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .form-header-text .brand-name {
+      font-family: 'Figtree', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: hsl(220, 20%, 15%);
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+    }
+
+    .form-header-text .brand-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: hsl(220, 10%, 55%);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── MIDDLE ZONE: titles + form ── */
+    .form-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* hide the old empty logo-container */
+    .logo-container {
+      display: none;
+    }
+
+    .welcome-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: hsl(220, 20%, 15%);
+      margin-bottom: 3px;
+    }
+
+    .welcome-subtitle {
+      font-size: 13px;
+      color: hsl(220, 10%, 50%);
+      margin-bottom: 18px;
+    }
+
+    /* Error / success messages */
+    .login-error,
+    .login-success {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .login-error {
+      background: #fff5f5;
+      border: 1px solid #ffc9c9;
+      color: #c92a2a;
+    }
+
+    .login-success {
+      background: #f0fff4;
+      border: 1px solid #b2f2bb;
+      color: #2b8a3e;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(220, 15%, 30%);
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid hsl(220, 20%, 88%);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: hsl(220, 20%, 15%);
+      background: hsl(50, 80%, 96%);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: hsl(230, 60%, 55%);
+      box-shadow: 0 0 0 3px hsla(230, 60%, 55%, 0.15);
+      background: hsl(0, 0%, 100%);
+    }
+
+    .form-group input::placeholder {
+      color: hsl(220, 10%, 60%);
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 60px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(220, 15%, 45%);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .password-toggle:hover {
+      color: hsl(230, 60%, 50%);
+    }
+
+    .forgot-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .forgot-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(230, 60%, 50%);
+      text-decoration: none;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    .btn-signin {
+      width: 100%;
+      padding: 13px;
+      background: hsl(235, 55%, 28%);
+      color: hsl(0, 0%, 100%);
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-signin:hover {
+      background: hsl(235, 55%, 35%);
+    }
+
+    .btn-signin:active {
+      transform: scale(0.99);
+    }
+
+    .btn-signin:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 14px 0;
+      gap: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: hsl(220, 20%, 88%);
+    }
+
+    .divider span {
+      font-size: 12px;
+      color: hsl(220, 10%, 55%);
+      white-space: nowrap;
+    }
+
+    .btn-email-link {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      color: hsl(220, 15%, 30%);
+      border: 1.5px solid hsl(220, 20%, 85%);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-email-link:hover {
+      background: hsl(220, 20%, 96%);
+      border-color: hsl(220, 20%, 75%);
+    }
+
+    /* ── BOTTOM ZONE: footer ── */
+    .footer-text {
+      text-align: center;
+      font-size: 11px;
+      color: hsl(220, 10%, 65%);
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid hsl(220, 20%, 92%);
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .login-card {
+        flex-direction: column;
+        max-width: 440px;
+      }
+
+      .login-image {
+        min-height: 220px;
+        margin: 8px 8px 0 8px;
+      }
+
+      .login-form-section {
+        padding: 32px 28px;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-card">
+
+    <!-- ── Left: Background Image + Logo overlay ── -->
+    <div class="login-image">
+      <picture>
+        <source srcset="/assets/alhoty/images/inspector.webp" type="image/webp">
+        <img class="bg-photo" src="/assets/alhoty/images/inspector.jpg" alt="AlHoty Stanger Inspector" loading="eager" decoding="async" />
+      </picture>
+
+      <!-- logo moved here, pinned bottom-left -->
+      <div class="image-logo">
+        <img src="/assets/alhoty/images/alhoty_logo.png" alt="AlHoty Stanger Logo" loading="eager" decoding="async" />
+        <div class="image-logo-label">NDT Management System</div>
+      </div>
+    </div>
+
+    <!-- ── Right: Login Form (logo-container kept but hidden) ── -->
+    <div class="login-form-section">
+      <div class="logo-container"></div>
+
+      <h1 class="welcome-title">Welcome Back</h1>
+      <p class="welcome-subtitle">Sign in to your account</p>
+
+      <div class="login-error" id="loginError"></div>
+      <div class="login-success" id="loginSuccess"></div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="usr" placeholder="user@alhotystanger.com" required
+            autocomplete="username" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="pwd" placeholder="••••••" required
+              autocomplete="current-password" />
+            <button type="button" class="password-toggle" onclick="togglePassword()">Show</button>
+          </div>
+        </div>
+
+        <div class="forgot-row">
+          <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-signin" id="btnSignin">Sign In</button>
+      </form>
+
+      <div class="divider">
+        <span>Or continue with</span>
+      </div>
+
+      <button class="btn-email-link" onclick="handleEmailLink()">
+        Login with Email Link
+      </button>
+
+      <p class="footer-text">&copy; 2025 AlHoty Stanger &middot; NDT Portal</p>
+    </div>
+  </div>
+
+  <script>
+    // ── Helpers ──
+    function showError(msg) {
+      hideSuccess();
+      var el = document.getElementById('loginError');
+      el.textContent = msg;
+      el.classList.add('visible');
+    }
+
+    function hideError() {
+      document.getElementById('loginError').classList.remove('visible');
+    }
+
+    function showSuccess(msg) {
+      hideError();
+      var el = document.getElementById('loginSuccess');
+      el.textContent = msg;
+      el.classList.add('visible');
+    }
+
+    function hideSuccess() {
+      document.getElementById('loginSuccess').classList.remove('visible');
+    }
+
+    function getCSRFToken() {
+      if (typeof frappe !== 'undefined' && frappe.csrf_token) {
+        return frappe.csrf_token;
+      }
+      var match = document.cookie.match(/csrf_token=([^;]+)/);
+      return match ? decodeURIComponent(match[1]) : '';
+    }
+
+    // ── Login ──
+    function handleLogin(e) {
+      e.preventDefault();
+      hideError();
+      hideSuccess();
+
+      var btn = document.getElementById('btnSignin');
+      var usr = document.getElementById('email').value.trim();
+      var pwd = document.getElementById('password').value;
+
+      if (!usr || !pwd) {
+        showError('Please enter both email and password.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in\u2026';
+
+      fetch('/api/method/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Frappe-CSRF-Token': getCSRFToken()
+        },
+        body: JSON.stringify({ usr: usr, pwd: pwd })
+      })
+        .then(function (res) {
+          if (res.ok) return res.json();
+          return res.json().then(function (data) { throw data; });
+        })
+        .then(function (data) {
+          var params = new URLSearchParams(window.location.search);
+          var redirect = params.get('redirect-to');
+          window.location.href = redirect || '/app';
+        })
+        .catch(function (err) {
+          var message = 'Invalid credentials. Please try again.';
+          if (err && err._server_messages) {
+            try {
+              var msgs = JSON.parse(err._server_messages);
+              message = JSON.parse(msgs[0]).message || message;
+            } catch (e) { }
+          } else if (err && err.message) {
+            message = err.message;
+          }
+          showError(message);
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Sign In';
+        });
+    }
+
+    // ── Forgot Password ──
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      var email = document.getElementById('email').value.trim();
+      if (!email) {
+        showError('Please enter your email address first, then click Forgot Password.');
+        return;
+      }
+      hideError();
+
+      fetch('/api/method/frappe.core.doctype.user.user.reset_password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Frappe-CSRF-Token': getCSRFToken()
+        },
+        body: JSON.stringify({ user: email })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function () {
+          showSuccess('Password reset link sent to ' + email + '. Check your inbox.');
+        })
+        .catch(function () {
+          showError('Could not send reset link. Please check your email and try again.');
+        });
+    }
+
+    // ── Email Link Login ──
+    function handleEmailLink() {
+      var email = document.getElementById('email').value.trim();
+      if (!email) {
+        showError('Please enter your email address first.');
+        return;
+      }
+      hideError();
+
+      fetch('/api/method/frappe.www.login.send_login_link', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Frappe-CSRF-Token': getCSRFToken()
+        },
+        body: JSON.stringify({ email: email })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function () {
+          showSuccess('Login link sent to ' + email + '. Check your inbox.');
+        })
+        .catch(function () {
+          showError('Could not send login link. Please try again.');
+        });
+    }
+
+    // ── Password Toggle ──
+    function togglePassword() {
+      var input = document.getElementById('password');
+      var btn = input.nextElementSibling;
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        btn.textContent = 'Show';
+      }
+    }
+  </script>
+</body>
+
+</html>

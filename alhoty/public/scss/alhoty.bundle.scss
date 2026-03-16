@@ -1,0 +1,336 @@
+/* 
+ * Alhoty App Bundle - Workspace Fullscreen Override
+ * This extends Frappe core styles without modifying them
+ */
+
+/* Hide the page title (e.g., "NDT Portal") */
+[data-page-route="Workspaces"] .page-head {
+    display: none !important;
+}
+
+/* Remove left/right padding from page container */
+[data-page-route="Workspaces"] .page-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Remove padding from main section div */
+[data-page-route="Workspaces"] .main-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Remove container padding */
+[data-page-route="Workspaces"] .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Adjust layout height since page-head is hidden */
+@media (min-width: 992px) {
+    [data-page-route="Workspaces"] .layout-main {
+        height: calc(100vh - var(--navbar-height)) !important;
+    }
+}
+
+/* Remove border and padding from layout-main-section */
+[data-page-route="Workspaces"] .layout-main-section {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Remove padding from layout-main-section-wrapper */
+[data-page-route="Workspaces"] .layout-main-section-wrapper {
+    margin-top: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remove padding from editor container */
+[data-page-route="Workspaces"] .editor-js-container {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove padding from widget groups */
+[data-page-route="Workspaces"] .widget-group {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove padding from custom blocks */
+[data-page-route="Workspaces"] .widget.custom_block,
+[data-page-route="Workspaces"] .custom-block {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove padding from codex editor blocks */
+[data-page-route="Workspaces"] .codex-editor {
+    padding: 0 !important;
+}
+
+[data-page-route="Workspaces"] .codex-editor__redactor {
+    padding: 0 !important;
+}
+
+/* Ensure ce-block (editor blocks) have no padding */
+[data-page-route="Workspaces"] .ce-block {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Keep sidebar intact */
+[data-page-route="Workspaces"] .layout-side-section {
+    /* Preserve default sidebar styling */
+}
+
+/* ========================================
+ * NAVBAR SIZE ENLARGEMENT (AL AMARA STYLE)
+ * ======================================== */
+
+/* Increase navbar height globally */
+.navbar {
+    height: 80px !important;
+    min-height: 80px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Update CSS variable for navbar height */
+:root {
+    --navbar-height: 80px !important;
+}
+
+/* Logo/brand container adjustments */
+.navbar-brand {
+    height: 60px !important;
+    padding: 10px 15px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Ensure navbar container doesn't interfere with logo positioning */
+.navbar > .container,
+.navbar > .container-fluid {
+    position: relative !important;
+}
+
+/* Adjust navbar content to account for logo position */
+.navbar-nav {
+    margin-left: 0 !important;
+}
+
+/* Fix for when sidebar is collapsed/expanded */
+.layout-side-section.overlay-sidebar ~ .layout-main .navbar-brand,
+.layout-side-section:not(.hidden) ~ .layout-main .navbar-brand {
+    left: 15px !important; /* Keep logo at left edge regardless of sidebar state */
+}
+
+/* Logo image sizing - Restore original size */
+.navbar-brand img,
+.app-logo img,
+.navbar-brand .app-logo {
+    height: 50px !important; /* Restored to original size */
+    width: auto !important;
+    max-height: 50px !important;
+}
+
+/* Company text inline with logo - larger and bold */
+.navbar-brand::after {
+    content: "Al Hoty Stanger Ltd. Co." !important;
+    display: inline-block !important;
+    font-size: 16px !important; /* Larger font size */
+    font-weight: bold !important;
+    color: #333 !important;
+    margin-left: 12px !important; /* Space between logo and text */
+    line-height: 50px !important; /* Align with logo height */
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+}
+
+/* Adjust navbar-brand container for inline layout */
+.navbar-brand {
+    height: 60px !important;
+    padding: 5px 15px !important;
+    display: flex !important;
+    flex-direction: row !important; /* Horizontal layout */
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: auto !important; /* Let it size naturally */
+}
+
+/* Navigation items vertical centering */
+.navbar-nav > li > a {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+    line-height: 30px !important;
+}
+
+/* Navbar toggle button for mobile */
+.navbar-toggle {
+    margin-top: 23px !important;
+    margin-bottom: 23px !important;
+}
+
+/* User dropdown and other navbar elements */
+.navbar-right > li > a {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+/* Adjust main layout for larger navbar */
+.layout-main {
+    top: 80px !important;
+}
+
+/* Update workspace height calculation for enlarged navbar */
+@media (min-width: 992px) {
+    [data-page-route="Workspaces"] .layout-main {
+        height: calc(100vh - 80px) !important;
+    }
+}
+
+/* Sidebar adjustments for larger navbar */
+.layout-side-section {
+    top: 80px !important;
+    height: calc(100vh - 80px) !important;
+}
+
+/* Mobile responsiveness for navbar */
+@media (max-width: 768px) {
+    .navbar {
+        height: 60px !important; /* Back to original mobile height */
+        min-height: 60px !important;
+    }
+    
+    :root {
+        --navbar-height: 60px !important;
+    }
+    
+    .navbar-brand {
+        height: 50px !important;
+        padding: 5px 10px !important; /* Tighter padding on mobile */
+        flex-direction: row !important; /* Keep inline on mobile too */
+    }
+    
+    .navbar-brand img,
+    .app-logo img {
+        height: 30px !important; /* Smaller logo on mobile */
+    }
+    
+    /* Adjust company text for mobile */
+    .navbar-brand::after {
+        font-size: 12px !important; /* Smaller but still readable */
+        margin-left: 8px !important;
+        line-height: 30px !important; /* Match mobile logo height */
+    }
+    
+    .navbar-nav {
+        margin-left: 120px !important; /* Adjust for smaller mobile logo */
+    }
+    
+    .navbar-nav > li > a {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+    
+    .navbar-toggle {
+        margin-top: 13px !important;
+        margin-bottom: 13px !important;
+    }
+    
+    .layout-main {
+        top: 60px !important; /* Back to original mobile height */
+    }
+    
+    .layout-side-section {
+        top: 60px !important;
+        height: calc(100vh - 60px) !important;
+    }
+    
+    [data-page-route="Workspaces"] .layout-main {
+        height: calc(100vh - 60px) !important;
+    }
+}
+
+/* Dropdown menus positioning adjustment */
+.navbar-nav .dropdown-menu {
+    top: 100% !important;
+    margin-top: 0 !important;
+}
+
+/* Fix dropdown positioning for right-aligned items (notifications, profile) */
+.navbar-right .dropdown-menu {
+    top: 100% !important;
+    margin-top: 0 !important;
+    right: 0 !important;
+}
+
+/* Ensure dropdowns appear directly below their parent */
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0 !important;
+}
+
+/* Fix for notification and profile dropdowns specifically */
+.navbar-nav .dropdown.open .dropdown-menu {
+    top: 100% !important;
+    margin-top: 0 !important;
+}
+
+/* Search bar adjustments if present */
+.navbar-form {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+@media (max-width: 768px) {
+    .navbar-form {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* Additional dropdown fixes for better positioning */
+.navbar .dropdown-toggle {
+    position: relative !important;
+}
+
+/* Ensure dropdown arrow indicators are properly aligned */
+.navbar-nav > li > a .caret {
+    margin-left: 5px !important;
+}
+
+/* Fix any potential z-index issues with dropdowns */
+.navbar-nav .dropdown-menu {
+    z-index: 1050 !important;
+}
+
+/* Fix blurry text on hover for custom HTML block cards */
+.ndt-kpi-card,
+.ndt-ring-wrap,
+.ndt-shortcut-item,
+.ndt-recent-table tbody tr {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+}
+
+.ndt-kpi-card:hover,
+.ndt-ring-wrap:hover {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform: scale(1.04) translateZ(0) !important;
+    -webkit-transform: scale(1.04) translateZ(0) !important;
+}
+
+.ndt-ring-wrap:hover {
+    transform: scale(1.05) translateZ(0) !important;
+    -webkit-transform: scale(1.05) translateZ(0) !important;
+}

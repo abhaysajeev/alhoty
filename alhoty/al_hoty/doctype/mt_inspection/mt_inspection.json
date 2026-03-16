@@ -1,0 +1,591 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-03-15 10:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "header_section",
+  "naming_series",
+  "branch",
+  "work_order",
+  "client",
+  "project_name",
+  "location",
+  "column_break_header",
+  "client_reference",
+  "date_of_test",
+  "date_of_report",
+  "page_no",
+  "examination_technique_section",
+  "mt_variant",
+  "magnetizing_technique",
+  "procedure_no",
+  "type",
+  "column_break_tech",
+  "examination_medium",
+  "lifting_power",
+  "particle_application",
+  "calibrated_leg_space",
+  "column_break_tech2",
+  "excess_particle_removal",
+  "demagnetization",
+  "acceptance_criteria",
+  "equipment_section",
+  "yoke_serial_no",
+  "yoke_manufacturer",
+  "uv_light_serial_no",
+  "uv_light_manufacturer",
+  "column_break_equip",
+  "light_meter_serial_no",
+  "light_meter_manufacturer",
+  "gauss_meter_serial_no",
+  "gauss_meter_manufacturer",
+  "column_break_equip2",
+  "thermometer_serial_no",
+  "thermometer_manufacturer",
+  "consumables_section",
+  "examination_medium_manufacturer",
+  "examination_medium_batch_no",
+  "column_break_cons",
+  "contrast_paint_manufacturer",
+  "contrast_paint_batch_no",
+  "column_break_cons2",
+  "solvent_cleaner_manufacturer",
+  "solvent_cleaner_batch_no",
+  "examination_part_surface_section",
+  "component_description",
+  "material",
+  "thickness",
+  "surface_temperature",
+  "column_break_surf",
+  "white_light_intensity",
+  "uv_light_intensity",
+  "surface_condition",
+  "type_of_weld",
+  "column_break_surf2",
+  "lighting_equipment",
+  "material_form",
+  "magnetic_field_before",
+  "magnetic_field_after",
+  "column_break_surf3",
+  "magnetic_field_strength_direction",
+  "post_cleaned",
+  "results_section",
+  "results",
+  "photo_attachments_section",
+  "photos",
+  "signature_section",
+  "include_signature",
+  "inspector_signature",
+  "column_break_sig",
+  "signed_by",
+  "signed_on",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "header_section",
+   "fieldtype": "Section Break",
+   "label": "Header"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "MTI-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "work_order.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Branch Master",
+   "read_only": 1
+  },
+  {
+   "fieldname": "work_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Work Order",
+   "options": "Work Order",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "work_order.client",
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client",
+   "options": "Client Master",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "work_order.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project Master",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "work_order.location",
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_reference",
+   "fieldtype": "Data",
+   "label": "Client Reference"
+  },
+  {
+   "fieldname": "date_of_test",
+   "fieldtype": "Date",
+   "label": "Date of Test",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_report",
+   "fieldtype": "Date",
+   "label": "Date of Report",
+   "reqd": 1
+  },
+  {
+   "fieldname": "page_no",
+   "fieldtype": "Int",
+   "label": "Page No"
+  },
+  {
+   "fieldname": "examination_technique_section",
+   "fieldtype": "Section Break",
+   "label": "Examination Technique"
+  },
+  {
+   "fieldname": "mt_variant",
+   "fieldtype": "Select",
+   "label": "MT Variant",
+   "options": "\nMT UV Fluorescent\nMT Visible"
+  },
+  {
+   "fieldname": "magnetizing_technique",
+   "fieldtype": "Select",
+   "label": "Magnetizing Technique",
+   "options": "\nElectromagnetic Yoke (Wet fluorescent)\nElectromagnetic Yoke (Wet non-fluorescent)"
+  },
+  {
+   "fieldname": "procedure_no",
+   "fieldtype": "Data",
+   "label": "Procedure No"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "\nAC\nDC\nPermanent Magnet"
+  },
+  {
+   "fieldname": "column_break_tech",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "examination_medium",
+   "fieldtype": "Select",
+   "label": "Examination Medium",
+   "options": "\nFluorescent ink\nBlack Ink\nDry Magnetic Powder"
+  },
+  {
+   "fieldname": "lifting_power",
+   "fieldtype": "Select",
+   "label": "Lifting Power",
+   "options": "\n4.5 kg (10 lbs)\n18.1 (39.9 lbs)"
+  },
+  {
+   "fieldname": "particle_application",
+   "fieldtype": "Select",
+   "label": "Particle Application",
+   "options": "\nSpraying\nDusted"
+  },
+  {
+   "fieldname": "calibrated_leg_space",
+   "fieldtype": "Select",
+   "label": "Calibrated Leg Space",
+   "options": "\n@3-inch Maximum\n@4 inch Maximum\n@5 inch Maximum\n@6 inch Maximum\n@7 inch Maximum\n@8 inch Maximum"
+  },
+  {
+   "fieldname": "column_break_tech2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "excess_particle_removal",
+   "fieldtype": "Select",
+   "label": "Excess Particle Removal",
+   "options": "\nN/A\nBlow with gentle air"
+  },
+  {
+   "fieldname": "demagnetization",
+   "fieldtype": "Select",
+   "label": "Demagnetization",
+   "options": "\nYES\nNO"
+  },
+  {
+   "fieldname": "acceptance_criteria",
+   "fieldtype": "Select",
+   "label": "Acceptance Criteria",
+   "options": "\nASME IX\nASME SEC VIII Div-1\nASME SEC VIII Div-2\nASME B31.1\nASME B31.3\nASME B31.4\nASME B31.8\nAPI1104\nAPI 650\nAPI 620\nAWS D1.1"
+  },
+  {
+   "fieldname": "equipment_section",
+   "fieldtype": "Section Break",
+   "label": "Equipment"
+  },
+  {
+   "fieldname": "yoke_serial_no",
+   "fieldtype": "Data",
+   "label": "Yoke Serial No"
+  },
+  {
+   "fieldname": "yoke_manufacturer",
+   "fieldtype": "Data",
+   "label": "Yoke Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "uv_light_serial_no",
+   "fieldtype": "Data",
+   "label": "UV Light Serial No"
+  },
+  {
+   "fieldname": "uv_light_manufacturer",
+   "fieldtype": "Data",
+   "label": "UV Light Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_equip",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "light_meter_serial_no",
+   "fieldtype": "Data",
+   "label": "Light Meter Serial No"
+  },
+  {
+   "fieldname": "light_meter_manufacturer",
+   "fieldtype": "Data",
+   "label": "Light Meter Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gauss_meter_serial_no",
+   "fieldtype": "Data",
+   "label": "Gauss Meter Serial No"
+  },
+  {
+   "fieldname": "gauss_meter_manufacturer",
+   "fieldtype": "Data",
+   "label": "Gauss Meter Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_equip2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "thermometer_serial_no",
+   "fieldtype": "Data",
+   "label": "Thermometer Serial No"
+  },
+  {
+   "fieldname": "thermometer_manufacturer",
+   "fieldtype": "Data",
+   "label": "Thermometer Manufacturer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "consumables_section",
+   "fieldtype": "Section Break",
+   "label": "Consumables"
+  },
+  {
+   "fieldname": "examination_medium_manufacturer",
+   "fieldtype": "Select",
+   "label": "Examination Medium Manufacturer",
+   "options": "\nArdrox\nMagnaflux"
+  },
+  {
+   "fieldname": "examination_medium_batch_no",
+   "fieldtype": "Select",
+   "label": "Examination Medium Batch No",
+   "options": "\n800/3\n8506\nMagnavis Grey#1"
+  },
+  {
+   "fieldname": "column_break_cons",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contrast_paint_manufacturer",
+   "fieldtype": "Select",
+   "label": "Contrast Paint Manufacturer",
+   "options": "\nArdrox\nMagnaflux"
+  },
+  {
+   "fieldname": "contrast_paint_batch_no",
+   "fieldtype": "Select",
+   "label": "Contrast Paint Batch No",
+   "options": "\nWCP-2\n8901W"
+  },
+  {
+   "fieldname": "column_break_cons2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "solvent_cleaner_manufacturer",
+   "fieldtype": "Select",
+   "label": "Solvent Cleaner Manufacturer",
+   "options": "\nArdrox\nMagnaflux"
+  },
+  {
+   "fieldname": "solvent_cleaner_batch_no",
+   "fieldtype": "Select",
+   "label": "Solvent Cleaner Batch No",
+   "options": "\nSKC-S\n9PR5"
+  },
+  {
+   "fieldname": "examination_part_surface_section",
+   "fieldtype": "Section Break",
+   "label": "Examination Part Surface"
+  },
+  {
+   "fieldname": "component_description",
+   "fieldtype": "Data",
+   "label": "Component Description"
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Link",
+   "label": "Material",
+   "options": "Material Master"
+  },
+  {
+   "fieldname": "thickness",
+   "fieldtype": "Data",
+   "label": "Thickness"
+  },
+  {
+   "fieldname": "surface_temperature",
+   "fieldtype": "Data",
+   "label": "Surface Temperature"
+  },
+  {
+   "fieldname": "column_break_surf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "white_light_intensity",
+   "fieldtype": "Data",
+   "label": "White Light Intensity"
+  },
+  {
+   "fieldname": "uv_light_intensity",
+   "fieldtype": "Data",
+   "label": "UV Light Intensity"
+  },
+  {
+   "fieldname": "surface_condition",
+   "fieldtype": "Select",
+   "label": "Surface Condition",
+   "options": "\nAs welded\nMachined\nBevel\nAs cast\nAs forged"
+  },
+  {
+   "fieldname": "type_of_weld",
+   "fieldtype": "Select",
+   "label": "Type of Weld",
+   "options": "\nBevel\nBase Metal\nButt Weld\nSocket Weld\nFillet weld"
+  },
+  {
+   "fieldname": "column_break_surf2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lighting_equipment",
+   "fieldtype": "Select",
+   "label": "Lighting Equipment",
+   "options": "\nUV Lamp Type UV-A (365nm)\nLED"
+  },
+  {
+   "fieldname": "material_form",
+   "fieldtype": "Select",
+   "label": "Material Form",
+   "options": "\nPlate\nPipe\nForging\nCasting"
+  },
+  {
+   "fieldname": "magnetic_field_before",
+   "fieldtype": "Select",
+   "label": "Magnetic Field Before",
+   "options": "\n-4 Gauss\n-3 Gauss\n-2 Gauss\n-1 Gauss\n0 Gauss\n+1 Gauss\n+2 Gauss\n+3 Gauss\n\u2265+4 Gauss"
+  },
+  {
+   "fieldname": "magnetic_field_after",
+   "fieldtype": "Select",
+   "label": "Magnetic Field After",
+   "options": "\n-4 Gauss\n-3 Gauss\n-2 Gauss\n-1 Gauss\n0 Gauss\n+1 Gauss\n+2 Gauss\n+3 Gauss\n\u2265+4 Gauss"
+  },
+  {
+   "fieldname": "column_break_surf3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "magnetic_field_strength_direction",
+   "fieldtype": "Data",
+   "label": "Magnetic Field Strength Direction"
+  },
+  {
+   "fieldname": "post_cleaned",
+   "fieldtype": "Select",
+   "label": "Post Cleaned",
+   "options": "\nYES\nNO"
+  },
+  {
+   "fieldname": "results_section",
+   "fieldtype": "Section Break",
+   "label": "Results"
+  },
+  {
+   "fieldname": "results",
+   "fieldtype": "Table",
+   "label": "Results",
+   "options": "MT Inspection Result"
+  },
+  {
+   "fieldname": "photo_attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Photo Attachments"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach",
+   "label": "Photos"
+  },
+  {
+   "fieldname": "signature_section",
+   "fieldtype": "Section Break",
+   "label": "Electronic Signature"
+  },
+  {
+   "default": "0",
+   "fieldname": "include_signature",
+   "fieldtype": "Check",
+   "label": "Include Electronic Signature"
+  },
+  {
+   "depends_on": "include_signature",
+   "fieldname": "inspector_signature",
+   "fieldtype": "Attach Image",
+   "label": "Signature Preview",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sig",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "include_signature",
+   "fieldname": "signed_by",
+   "fieldtype": "Data",
+   "label": "Signed By",
+   "read_only": 1
+  },
+  {
+   "depends_on": "include_signature",
+   "fieldname": "signed_on",
+   "fieldtype": "Datetime",
+   "label": "Signed On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "MT Inspection",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-03-15 16:02:33.744773",
+ "modified_by": "Administrator",
+ "module": "AL HOTY",
+ "name": "MT Inspection",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "NDT Inspector",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "NDT Reviewer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "res",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

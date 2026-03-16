@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "creation": "2024-03-15 10:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "component_reference",
+  "weld_ref_no",
+  "welder_symbol",
+  "discontinuity_location",
+  "discontinuity_type",
+  "discontinuity_size",
+  "flaw_type",
+  "result",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "component_reference",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Component Reference"
+  },
+  {
+   "fieldname": "weld_ref_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Weld Ref No"
+  },
+  {
+   "fieldname": "welder_symbol",
+   "fieldtype": "Data",
+   "label": "Welder Symbol"
+  },
+  {
+   "fieldname": "discontinuity_location",
+   "fieldtype": "Data",
+   "label": "Discontinuity Location"
+  },
+  {
+   "fieldname": "discontinuity_type",
+   "fieldtype": "Data",
+   "label": "Discontinuity Type"
+  },
+  {
+   "fieldname": "discontinuity_size",
+   "fieldtype": "Data",
+   "label": "Discontinuity Size"
+  },
+  {
+   "fieldname": "flaw_type",
+   "fieldtype": "Data",
+   "label": "Flaw Type"
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Result",
+   "options": "Acceptable\nRejectable"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-16 10:36:05.167284",
+ "modified_by": "Administrator",
+ "module": "AL HOTY",
+ "name": "MT Inspection Result",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
