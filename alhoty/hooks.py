@@ -89,7 +89,22 @@ app_include_css = "alhoty.bundle.css"
 # --------
 # Export fixtures for automatic installation
 fixtures = [
-    {"dt": "Res Access Config"}
+    # Roles required for doctype permissions
+    {"dt": "Role", "filters": [["role_name", "in", ["NDT Inspector", "NDT Reviewer"]]]},
+    # Custom field on User for inspector e-signature on PDFs
+    {"dt": "Custom Field", "filters": [["dt", "=", "User"], ["fieldname", "=", "signature_image"]]},
+    # MT Inspection PDF output template
+    {"dt": "Print Format", "filters": [["doc_type", "=", "MT Inspection"]]},
+    # Naming series: WO-.YYYY.- and MTI-.YYYY.-
+    {"dt": "Property Setter", "filters": [["doc_type", "in", ["Work Order", "MT Inspection"]]]},
+    # KPI cards shown on the NDT Portal workspace
+    {"dt": "Number Card", "filters": [["name", "in", [
+        "Active Work Orders", "Completed This Month", "Equipment Due Calibration",
+        "Pending Approvals", "Pending Inspections", "Rejected Joints",
+        "Total Branches", "Total MT Reports",
+    ]]]},
+    # Dashboard widget — NDT Portal workspace is blank without this
+    {"dt": "Custom HTML Block", "filters": [["name", "=", "MT Branch Inspection"]]},
 ]
 
 # Uninstallation
