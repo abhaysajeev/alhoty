@@ -79,9 +79,13 @@
   "signature_section",
   "include_signature",
   "inspector_signature",
+  "include_seal",
+  "inspector_seal",
   "column_break_sig",
   "signed_by",
   "signed_on",
+  "sig_preview_section",
+  "signature_seal_preview",
   "amended_from"
  ],
  "fields": [
@@ -248,10 +252,14 @@
   },
   {
    "fieldname": "yoke_serial_no",
-   "fieldtype": "Data",
-   "label": "Yoke Serial No"
+   "fieldtype": "Link",
+   "label": "Yoke Serial No",
+   "options": "Equipment Master",
+   "link_filters": "[[\"Equipment Master\", \"equipment_type\", \"=\", \"Yoke\"]]"
   },
   {
+   "fetch_from": "yoke_serial_no.manufacturer",
+   "fetch_if_empty": 0,
    "fieldname": "yoke_manufacturer",
    "fieldtype": "Data",
    "label": "Yoke Manufacturer",
@@ -259,10 +267,14 @@
   },
   {
    "fieldname": "uv_light_serial_no",
-   "fieldtype": "Data",
-   "label": "UV Light Serial No"
+   "fieldtype": "Link",
+   "label": "UV Light Serial No",
+   "options": "Equipment Master",
+   "link_filters": "[[\"Equipment Master\", \"equipment_type\", \"=\", \"UV Light\"]]"
   },
   {
+   "fetch_from": "uv_light_serial_no.manufacturer",
+   "fetch_if_empty": 0,
    "fieldname": "uv_light_manufacturer",
    "fieldtype": "Data",
    "label": "UV Light Manufacturer",
@@ -274,10 +286,14 @@
   },
   {
    "fieldname": "light_meter_serial_no",
-   "fieldtype": "Data",
-   "label": "Light Meter Serial No"
+   "fieldtype": "Link",
+   "label": "Light Meter Serial No",
+   "options": "Equipment Master",
+   "link_filters": "[[\"Equipment Master\", \"equipment_type\", \"=\", \"Light Meter\"]]"
   },
   {
+   "fetch_from": "light_meter_serial_no.manufacturer",
+   "fetch_if_empty": 0,
    "fieldname": "light_meter_manufacturer",
    "fieldtype": "Data",
    "label": "Light Meter Manufacturer",
@@ -285,10 +301,14 @@
   },
   {
    "fieldname": "gauss_meter_serial_no",
-   "fieldtype": "Data",
-   "label": "Gauss Meter Serial No"
+   "fieldtype": "Link",
+   "label": "Gauss Meter Serial No",
+   "options": "Equipment Master",
+   "link_filters": "[[\"Equipment Master\", \"equipment_type\", \"=\", \"Gauss Meter\"]]"
   },
   {
+   "fetch_from": "gauss_meter_serial_no.manufacturer",
+   "fetch_if_empty": 0,
    "fieldname": "gauss_meter_manufacturer",
    "fieldtype": "Data",
    "label": "Gauss Meter Manufacturer",
@@ -300,10 +320,14 @@
   },
   {
    "fieldname": "thermometer_serial_no",
-   "fieldtype": "Data",
-   "label": "Thermometer Serial No"
+   "fieldtype": "Link",
+   "label": "Thermometer Serial No",
+   "options": "Equipment Master",
+   "link_filters": "[[\"Equipment Master\", \"equipment_type\", \"=\", \"Thermometer\"]]"
   },
   {
+   "fetch_from": "thermometer_serial_no.manufacturer",
+   "fetch_if_empty": 0,
    "fieldname": "thermometer_manufacturer",
    "fieldtype": "Data",
    "label": "Thermometer Manufacturer",
@@ -511,6 +535,31 @@
    "read_only": 1
   },
   {
+   "default": "0",
+   "fieldname": "include_seal",
+   "fieldtype": "Check",
+   "label": "Include Seal"
+  },
+  {
+   "depends_on": "include_seal",
+   "fieldname": "inspector_seal",
+   "fieldtype": "Attach Image",
+   "label": "Seal Preview",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.include_signature || doc.include_seal",
+   "fieldname": "sig_preview_section",
+   "fieldtype": "Section Break",
+   "label": "Signature & Seal Preview"
+  },
+  {
+   "fieldname": "signature_seal_preview",
+   "fieldtype": "HTML",
+   "label": "Preview",
+   "options": ""
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -524,7 +573,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-15 16:02:33.744773",
+ "modified": "2026-03-17 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "AL HOTY",
  "name": "MT Inspection",

@@ -10,7 +10,7 @@
   <!-- Preload critical images for instant display -->
   <link rel="preload" as="image" href="/assets/alhoty/images/login_background_placeholder.webp" type="image/webp" />
   <link rel="preload" as="image" href="/assets/alhoty/images/login_background.webp" type="image/webp" />
-  <link rel="preload" as="image" href="/assets/alhoty/images/inspector.webp" type="image/webp" />
+  <link rel="preload" as="image" href="/assets/alhoty/images/inspector.webp" type="image/webp" fetchpriority="high" />
   <link rel="preload" as="image" href="/assets/alhoty/images/alhoty_logo.png" type="image/png" />
   
   <style>
@@ -113,8 +113,6 @@
       object-position: 65% center;
       display: block;
       border-radius: 20px;
-      opacity: 0;
-      animation: fadeIn 0.4s ease-out 0.05s forwards;
     }
 
     @keyframes fadeIn {
@@ -359,8 +357,25 @@
     }
 
     .btn-signin:disabled {
-      opacity: 0.65;
+      opacity: 0.85;
       cursor: not-allowed;
+    }
+
+    .btn-signin .btn-spinner {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     .divider {
@@ -442,7 +457,7 @@
     <div class="login-image">
       <picture>
         <source srcset="/assets/alhoty/images/inspector.webp" type="image/webp">
-        <img class="bg-photo" src="/assets/alhoty/images/inspector.jpg" alt="AlHoty Stanger Inspector" loading="eager" decoding="async" />
+        <img class="bg-photo" src="/assets/alhoty/images/inspector.jpg" alt="AlHoty Stanger Inspector" loading="eager" decoding="sync" fetchpriority="high" />
       </picture>
 
       <!-- logo moved here, pinned bottom-left -->
@@ -482,7 +497,10 @@
           <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn-signin" id="btnSignin">Sign In</button>
+        <button type="submit" class="btn-signin" id="btnSignin">
+          <span class="btn-spinner" id="btnSpinner" style="display:none;"></span>
+          <span id="btnText">Sign In</span>
+        </button>
       </form>
 
       <div class="divider">
@@ -545,7 +563,8 @@
       }
 
       btn.disabled = true;
-      btn.textContent = 'Signing in\u2026';
+      document.getElementById('btnSpinner').style.display = 'inline-block';
+      document.getElementById('btnText').textContent = 'Signing in\u2026';
 
       fetch('/api/method/login', {
         method: 'POST',
@@ -561,11 +580,17 @@
           return res.json().then(function (data) { throw data; });
         })
         .then(function (data) {
+          // Keep spinner showing — page is about to navigate
+          document.getElementById('btnText').textContent = 'Redirecting\u2026';
           var params = new URLSearchParams(window.location.search);
           var redirect = params.get('redirect-to');
           window.location.href = redirect || '/app';
         })
         .catch(function (err) {
+          // Only reset button on failure
+          btn.disabled = false;
+          document.getElementById('btnSpinner').style.display = 'none';
+          document.getElementById('btnText').textContent = 'Sign In';
           var message = 'Invalid credentials. Please try again.';
           if (err && err._server_messages) {
             try {
@@ -576,10 +601,6 @@
             message = err.message;
           }
           showError(message);
-        })
-        .finally(function () {
-          btn.disabled = false;
-          btn.textContent = 'Sign In';
         });
     }
 

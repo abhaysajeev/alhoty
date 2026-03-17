@@ -307,6 +307,132 @@
     z-index: 1050 !important;
 }
 
+/* ========================================
+ * RES USER — HIDE PRINT EVERYWHERE
+ * Scoped to body.res-user (set by res_ui.js)
+ * No core Frappe files modified.
+ * ======================================== */
+
+// ── Form toolbar: printer icon button ──
+// Bootstrap tooltip moves title → data-original-title, target both
+body.res-user .page-icon-group button[data-original-title="Print"],
+body.res-user .page-icon-group button[title="Print"] {
+    display: none !important;
+}
+
+// ── List view / form: standard actions menu "Print" item ──
+// Text-based hiding is handled by MutationObserver in res_ui.js.
+// CSS fallback: hide any dropdown-item whose label text is exactly "Print".
+body.res-user .actions-btn-group .dropdown-item:has(.menu-item-label) {
+    // individual text match done in JS; this keeps specificity high
+}
+
+// ── Print preview page: hide entire page route ──
+body.res-user .page-container[data-page-route="print"] {
+    display: none !important;
+}
+
+// ── Print preview page: primary Print button ──
+body.res-user .primary-action[data-label="Print"],
+body.res-user .btn.primary-action:has(use[href="#es-line-printer"]) {
+    display: none !important;
+}
+
+// ── Print preview inline buttons (print_layout.html) ──
+body.res-user .btn-print-print,
+body.res-user .btn-download-pdf,
+body.res-user .btn-print-preview {
+    display: none !important;
+}
+
+// ── Print page secondary toolbar buttons (Full Page, PDF, Refresh) ──
+body.res-user [data-page-route="print"] .custom-actions {
+    display: none !important;
+}
+
+// ── Printview route (/printview) ──
+body.res-user .page-container[data-page-route="printview"] {
+    display: none !important;
+}
+
+/* ========================================
+ * SIGNATURE & SEAL PREVIEW CARD
+ * Rendered in MT Inspection form via JS
+ * ======================================== */
+
+.ndt-sig-seal-card {
+    border: 1px dashed #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+    padding: 16px 20px;
+    margin: 8px 0 4px;
+
+    .ndt-sig-seal-header {
+        font-size: 11px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    .ndt-sig-seal-body {
+        display: flex;
+        gap: 40px;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+}
+
+.ndt-preview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 120px;
+}
+
+.ndt-preview-img {
+    max-height: 80px;
+    max-width: 200px;
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 4px;
+
+    &--seal {
+        max-height: 80px;
+        max-width: 80px;
+    }
+}
+
+.ndt-preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #374151;
+    text-align: center;
+}
+
+.ndt-preview-name {
+    font-size: 11px;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* ========================================
+ * SPLASH / BOOT SCREEN
+ * Frappe hardcodes max-width/height:100px inline — override with !important
+ * ======================================== */
+
+.splash img {
+    max-width: 200px !important;
+    max-height: 200px !important;
+    width: 200px !important;
+}
+
 /* Fix blurry text on hover for custom HTML block cards */
 .ndt-kpi-card,
 .ndt-ring-wrap,

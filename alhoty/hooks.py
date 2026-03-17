@@ -43,7 +43,9 @@ app_include_css = "alhoty.bundle.css"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "User": "public/js/user.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -74,10 +76,9 @@ app_include_css = "alhoty.bundle.css"
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "alhoty.utils.jinja_methods",
-# 	"filters": "alhoty.utils.jinja_filters"
-# }
+jinja = {
+	"methods": "alhoty.utils.jinja_methods",
+}
 
 # Installation
 # ------------
@@ -91,8 +92,8 @@ app_include_css = "alhoty.bundle.css"
 fixtures = [
     # Roles required for doctype permissions
     {"dt": "Role", "filters": [["role_name", "in", ["NDT Inspector", "NDT Reviewer"]]]},
-    # Custom field on User for inspector e-signature on PDFs
-    {"dt": "Custom Field", "filters": [["dt", "=", "User"], ["fieldname", "=", "signature_image"]]},
+    # Custom fields on User for inspector e-signature and seal on PDFs
+    {"dt": "Custom Field", "filters": [["dt", "=", "User"], ["fieldname", "in", ["signature_image", "seal_image"]]]},
     # MT Inspection PDF output template
     {"dt": "Print Format", "filters": [["doc_type", "=", "MT Inspection"]]},
     # Naming series: WO-.YYYY.- and MTI-.YYYY.-
