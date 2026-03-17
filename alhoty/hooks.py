@@ -26,7 +26,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 app_include_css = "alhoty.bundle.css"
-# app_include_js = "/assets/alhoty/js/alhoty.js"
+app_include_js = "/assets/alhoty/js/navbar_override.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/alhoty/css/alhoty.css"

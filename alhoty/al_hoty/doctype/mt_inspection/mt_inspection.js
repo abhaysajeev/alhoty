@@ -13,6 +13,14 @@ frappe.ui.form.on('MT Inspection', {
 		}
 	},
 
+	// ── Contrast Paint toggle ─────────────────────────────────────────
+	use_contrast_paint: function(frm) {
+		if (!frm.doc.use_contrast_paint) {
+			frm.set_value('contrast_paint_manufacturer', '');
+			frm.set_value('contrast_paint_batch_no', '');
+		}
+	},
+
 	// ── Electronic Signature ──────────────────────────────────────────
 	include_signature: function(frm) {
 		if (frm.doc.include_signature) {

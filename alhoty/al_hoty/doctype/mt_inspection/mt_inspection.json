@@ -49,11 +49,16 @@
   "examination_medium_manufacturer",
   "examination_medium_batch_no",
   "column_break_cons",
+  "use_contrast_paint",
   "contrast_paint_manufacturer",
   "contrast_paint_batch_no",
   "column_break_cons2",
   "solvent_cleaner_manufacturer",
   "solvent_cleaner_batch_no",
+  "column_break_cons2",
+  "use_contrast_paint",
+  "contrast_paint_manufacturer",
+  "contrast_paint_batch_no",
   "examination_part_surface_section",
   "component_description",
   "material",
@@ -355,16 +360,26 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "0",
+   "fieldname": "use_contrast_paint",
+   "fieldtype": "Check",
+   "label": "Use Contrast Paint"
+  },
+  {
    "fieldname": "contrast_paint_manufacturer",
    "fieldtype": "Select",
    "label": "Contrast Paint Manufacturer",
-   "options": "\nArdrox\nMagnaflux"
+   "options": "\nArdrox\nMagnaflux",
+   "depends_on": "eval:doc.use_contrast_paint",
+   "mandatory_depends_on": ""
   },
   {
    "fieldname": "contrast_paint_batch_no",
    "fieldtype": "Select",
    "label": "Contrast Paint Batch No",
-   "options": "\nWCP-2\n8901W"
+   "options": "\nWCP-2\n8901W",
+   "depends_on": "eval:doc.use_contrast_paint",
+   "mandatory_depends_on": ""
   },
   {
    "fieldname": "column_break_cons2",
@@ -381,6 +396,32 @@
    "fieldtype": "Select",
    "label": "Solvent Cleaner Batch No",
    "options": "\nSKC-S\n9PR5"
+  },
+  {
+   "fieldname": "column_break_cons2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_contrast_paint",
+   "fieldtype": "Check",
+   "label": "Use Contrast Paint"
+  },
+  {
+   "fieldname": "contrast_paint_manufacturer",
+   "fieldtype": "Select",
+   "label": "Contrast Paint Manufacturer",
+   "options": "\nArdrox\nMagnaflux",
+   "depends_on": "eval:doc.use_contrast_paint",
+   "mandatory_depends_on": ""
+  },
+  {
+   "fieldname": "contrast_paint_batch_no",
+   "fieldtype": "Select",
+   "label": "Contrast Paint Batch No",
+   "options": "\nWCP-2\n8901W",
+   "depends_on": "eval:doc.use_contrast_paint",
+   "mandatory_depends_on": ""
   },
   {
    "fieldname": "examination_part_surface_section",
@@ -454,13 +495,13 @@
    "fieldname": "magnetic_field_before",
    "fieldtype": "Select",
    "label": "Magnetic Field Before",
-   "options": "\n-4 Gauss\n-3 Gauss\n-2 Gauss\n-1 Gauss\n0 Gauss\n+1 Gauss\n+2 Gauss\n+3 Gauss\n\u2265+4 Gauss"
+   "options": "\n-4 Gauss\n-3 Gauss\n-2 Gauss\n-1 Gauss\n0 Gauss\n+1 Gauss\n+2 Gauss\n+3 Gauss\n≥+4 Gauss"
   },
   {
    "fieldname": "magnetic_field_after",
    "fieldtype": "Select",
    "label": "Magnetic Field After",
-   "options": "\n-4 Gauss\n-3 Gauss\n-2 Gauss\n-1 Gauss\n0 Gauss\n+1 Gauss\n+2 Gauss\n+3 Gauss\n\u2265+4 Gauss"
+   "options": "\n-4 Gauss\n-3 Gauss\n-2 Gauss\n-1 Gauss\n0 Gauss\n+1 Gauss\n+2 Gauss\n+3 Gauss\n≥+4 Gauss"
   },
   {
    "fieldname": "column_break_surf3",

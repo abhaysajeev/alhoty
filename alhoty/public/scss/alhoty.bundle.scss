@@ -460,3 +460,27 @@ body.res-user .page-container[data-page-route="printview"] {
     transform: scale(1.05) translateZ(0) !important;
     -webkit-transform: scale(1.05) translateZ(0) !important;
 }
+
+/* ========================================
+ * PROFILE DROPDOWN — CUSTOM 4-ITEM MENU
+ * Logout item styled as red card, white text
+ * Class applied by navbar_override.js after toolbar_setup
+ * ======================================== */
+
+#toolbar-user .alhoty-logout-btn {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    border-radius: 6px !important;
+    margin: 6px 8px 4px !important;
+    padding: 8px 16px !important;
+    width: calc(100% - 16px) !important;
+    display: block !important;
+    text-align: left !important;
+    font-weight: 500 !important;
+}
+
+#toolbar-user .alhoty-logout-btn:hover,
+#toolbar-user .alhoty-logout-btn:focus {
+    background-color: #b02a37 !important;
+    color: #fff !important;
+}
