@@ -6,29 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AlHoty Stanger - NDT Portal Login</title>
   <!-- csrf_token -->
-  
-  <!-- Preload critical images for instant display -->
+
   <link rel="preload" as="image" href="/assets/alhoty/images/login_background_placeholder.webp" type="image/webp" />
   <link rel="preload" as="image" href="/assets/alhoty/images/login_background.webp" type="image/webp" />
   <link rel="preload" as="image" href="/assets/alhoty/images/inspector.webp" type="image/webp" fetchpriority="high" />
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Figtree:wght@400;600;700;800&display=swap');
 
-    /* ── Reset ── */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ── Design tokens ── */
+    :root {
+      --brand-deep:   #0E1650;
+      --brand-core:   #1A2490;
+      --brand-light:  #2840D8;
+      --brand-gold:   #C4973A;
+      --brand-gold-lt:#E2B55C;
+      --surface:      #F7F8FF;
+      --slate-950:    #080E1E;
+      --slate-800:    #1C2540;
+      --slate-600:    #48567A;
+      --slate-400:    #8C97B8;
+      --slate-300:    #B4BCE0;
+      --slate-200:    #D6DAEA;
+      --slate-100:    #EDF0F7;
+      --focus-ring:   hsla(230, 68%, 58%, 0.20);
+      --green-live:   #22C55E;
     }
 
-    /* ── Page shell ── */
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Body ── */
     body {
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: hsl(230, 28%, 88%);
+      background: hsl(230, 28%, 82%);
       padding: clamp(16px, 4vw, 40px);
     }
 
@@ -40,7 +55,7 @@
       background-image: url('/assets/alhoty/images/login_background_placeholder.webp');
       background-size: cover;
       background-position: center;
-      filter: blur(20px);
+      filter: blur(24px);
       transform: scale(1.1);
       z-index: -2;
     }
@@ -52,57 +67,77 @@
       background-image: url('/assets/alhoty/images/login_background.webp');
       background-size: cover;
       background-position: center;
-      filter: blur(12px);
+      filter: blur(14px);
       transform: scale(1.1);
       opacity: 0;
       z-index: -1;
-      animation: fadeInBg 0.7s ease-out 0.1s forwards;
+      animation: fadeInBg 0.8s ease-out 0.1s forwards;
     }
 
     @media (min-resolution: 2dppx) {
       body::after { background-image: url('/assets/alhoty/images/login_background_hq.webp'); }
     }
 
-    @keyframes fadeInBg { to { opacity: 1; } }
-    @keyframes fadeIn   { to { opacity: 1; } }
-    @keyframes spin     { to { transform: rotate(360deg); } }
-    @keyframes slideUp  {
-      from { opacity: 0; transform: translateY(16px); }
+    @keyframes fadeInBg  { to { opacity: 1; } }
+    @keyframes fadeIn    { to { opacity: 1; } }
+    @keyframes spin      { to { transform: rotate(360deg); } }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes slideUp   {
+      from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    /* ─────────────────────────────────────────────
-       CARD
-    ───────────────────────────────────────────── */
-    .login-card {
-      display: flex;
-      width: 100%;
-      max-width: min(960px, 100%);
-      height: min(540px, calc(100vh - 80px));
-      background: rgba(255, 255, 255, 0.93);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      overflow: hidden;
-      box-shadow:
-        0 1px 2px rgba(10, 15, 50, 0.04),
-        0 6px 20px rgba(10, 15, 50, 0.08),
-        0 28px 64px rgba(10, 15, 50, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    @keyframes shimmer {
+      from { background-position: -200% center; }
+      to   { background-position:  200% center; }
     }
 
-    /* ─────────────────────────────────────────────
+    /* ════════════════════════════════════
+       CARD
+    ════════════════════════════════════ */
+    .login-card {
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: min(980px, 100%);
+      height: min(568px, calc(100vh - 80px));
+      background: rgba(255,255,255, 0.96);
+      backdrop-filter: blur(36px) saturate(200%);
+      -webkit-backdrop-filter: blur(36px) saturate(200%);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255, 0.72);
+      overflow: hidden;
+      box-shadow:
+        0 1px 2px   rgba(8,14,50, 0.04),
+        0 8px 24px  rgba(8,14,50, 0.10),
+        0 36px 88px rgba(8,14,50, 0.22),
+        inset 0 1px 0 rgba(255,255,255, 0.95);
+      animation: slideUp 0.48s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* Three-colour accent bar at top */
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg,
+        var(--brand-deep)  0%,
+        var(--brand-light) 52%,
+        var(--brand-gold)  100%
+      );
+      border-radius: 22px 22px 0 0;
+      z-index: 10;
+    }
+
+    /* ════════════════════════════════════
        LEFT — IMAGE PANEL
-    ───────────────────────────────────────────── */
+    ════════════════════════════════════ */
     .login-image {
-      flex: 0 0 60%;
+      flex: 0 0 58%;
       position: relative;
       overflow: hidden;
-      /* Inset on all sides — image floats inside the card like a photo in a frame */
       margin: 10px 0 10px 10px;
-      border-radius: 13px;
+      border-radius: 14px;
       min-height: 0;
     }
 
@@ -114,109 +149,167 @@
       display: block;
     }
 
-    /* Dark gradient overlay for text legibility */
+    /* Cinematic gradient — heavy at bottom, airy at top */
     .login-image::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        160deg,
-        rgba(8, 12, 35, 0.08) 0%,
-        rgba(8, 12, 35, 0.38) 50%,
-        rgba(8, 12, 35, 0.80) 100%
+        168deg,
+        rgba(6,10,28, 0.06)   0%,
+        rgba(6,10,28, 0.18)  28%,
+        rgba(6,10,28, 0.52)  62%,
+        rgba(6,10,28, 0.90) 100%
       );
       pointer-events: none;
     }
 
-    /* Brand block — pinned to bottom */
+    /* Brand block — pinned bottom */
     .image-logo {
       position: absolute;
-      bottom: 32px;
-      left: 32px;
-      right: 32px;
-      z-index: 1;
+      bottom: 28px;
+      left: 28px;
+      right: 28px;
+      z-index: 2;
+    }
+
+    /* Gold accent line above title */
+    .image-logo-line {
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand-gold), transparent);
+      margin-bottom: 13px;
+      opacity: 0;
+      animation: fadeIn 0.4s ease-out 0.22s forwards;
     }
 
     .image-logo-label {
       font-family: 'Figtree', sans-serif;
-      font-size: clamp(26px, 2.6vw, 40px);
+      font-size: clamp(32px, 3.8vw, 52px);
       font-weight: 800;
       color: #ffffff;
-      letter-spacing: -0.5px;
-      line-height: 1.12;
+      letter-spacing: -0.6px;
+      line-height: 1.10;
       text-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.5),
-        0 4px 20px rgba(0, 0, 0, 0.35);
+        0 1px 4px  rgba(0,0,0, 0.55),
+        0 4px 24px rgba(0,0,0, 0.35);
       opacity: 0;
       animation: fadeIn 0.5s ease-out 0.3s forwards;
     }
 
     .image-logo-tagline {
-      margin-top: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11.5px;
+      margin-top: 12px;
+      font-size: clamp(11px, 1.1vw, 14px);
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.65);
-      letter-spacing: 3px;
+      color: rgba(255,255,255, 0.65);
+      letter-spacing: 3.5px;
       text-transform: uppercase;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 1px 6px rgba(0,0,0, 0.5);
       opacity: 0;
       animation: fadeIn 0.5s ease-out 0.5s forwards;
     }
 
-    /* ─────────────────────────────────────────────
+    /* ════════════════════════════════════
        RIGHT — FORM PANEL
-    ───────────────────────────────────────────── */
+    ════════════════════════════════════ */
     .login-form-section {
-      flex: 0 0 40%;
-      padding: 28px 32px 24px;
+      flex: 0 0 42%;
+      padding: 30px 36px 26px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 0;
       overflow-y: auto;
       min-width: 0;
-      /* Hairline left border — the only separator between image and form */
-      border-left: 1px solid hsl(220, 16%, 91%);
+      border-left: 1px solid hsl(230, 25%, 91%);
+      /* Subtle blue-tinted radial gradient — not flat white */
+      background:
+        radial-gradient(ellipse at 85% -5%,  hsla(230, 70%, 97%, 0.85) 0%, transparent 52%),
+        radial-gradient(ellipse at 10% 105%, hsla(220, 45%, 96%, 0.60) 0%, transparent 46%),
+        #ffffff;
     }
 
-    /* Hidden legacy container — keep for Frappe compatibility */
     .logo-container { display: none; }
 
-    /* Welcome heading */
+    /* ── Brand header ── */
+    .form-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 18px;
+    }
+
+    /* Company logo */
+    .brand-mark {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-family: 'Figtree', sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--brand-deep);
+      letter-spacing: 0.1px;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--brand-gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Separator */
+    .form-sep {
+      height: 1px;
+      background: linear-gradient(90deg, var(--slate-200) 0%, transparent 88%);
+      margin-bottom: 18px;
+    }
+
+    /* Welcome text */
     .welcome-title {
       font-family: 'Figtree', sans-serif;
-      font-size: clamp(22px, 2.4vw, 30px);
+      font-size: clamp(21px, 2.1vw, 27px);
       font-weight: 800;
-      color: hsl(220, 25%, 12%);
-      letter-spacing: -0.3px;
+      color: var(--slate-950);
+      letter-spacing: -0.4px;
       line-height: 1.2;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .welcome-subtitle {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 400;
-      color: hsl(220, 12%, 52%);
+      color: var(--slate-400);
       line-height: 1.5;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     /* ── Alerts ── */
     .login-error,
     .login-success {
       display: none;
-      padding: 11px 16px;
+      padding: 10px 14px;
       border-radius: 10px;
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.45;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .login-error {
       background: hsl(0, 90%, 97%);
-      border: 1px solid hsl(0, 75%, 86%);
-      color: hsl(0, 72%, 38%);
+      border: 1px solid hsl(0, 75%, 88%);
+      color: hsl(0, 65%, 40%);
     }
 
     .login-success {
@@ -228,29 +321,47 @@
     .visible { display: block !important; }
 
     /* ── Form fields ── */
-    .form-group {
-      margin-bottom: 12px;
-    }
+    .form-group { margin-bottom: 12px; }
 
     .form-group label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(220, 18%, 28%);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--slate-600);
       margin-bottom: 6px;
-      letter-spacing: 0.1px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* Input wrapper — holds icon + input */
+    .input-wrap { position: relative; }
+
+    .input-wrap .field-icon {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: var(--slate-300);
+      pointer-events: none;
+      transition: color 0.18s;
+    }
+
+    .input-wrap:focus-within .field-icon {
+      color: var(--brand-core);
     }
 
     .form-group input {
       width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid hsl(220, 18%, 86%);
+      padding: 10px 14px 10px 40px;
+      border: 1.5px solid var(--slate-200);
       border-radius: 10px;
-      font-size: 14.5px;
+      font-size: 14px;
       font-family: 'Inter', sans-serif;
-      color: hsl(220, 22%, 14%);
-      background: hsl(220, 20%, 99%);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      color: var(--slate-950);
+      background: hsl(225, 22%, 99%);
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
       outline: none;
       line-height: 1.5;
     }
@@ -260,43 +371,44 @@
     }
 
     .form-group input:focus {
-      border-color: hsl(235, 60%, 52%);
+      border-color: var(--brand-core);
       box-shadow:
-        0 0 0 3.5px hsla(235, 65%, 55%, 0.14),
-        0 1px 3px rgba(0, 0, 0, 0.06);
+        0 0 0 3.5px var(--focus-ring),
+        0 1px 3px rgba(0,0,0, 0.06);
       background: #ffffff;
     }
 
     .form-group input::placeholder {
-      color: hsl(220, 10%, 62%);
+      color: hsl(220, 10%, 70%);
       font-weight: 400;
     }
 
-    /* Password toggle */
-    .password-wrapper { position: relative; }
+    /* Password — icon left, toggle right */
+    .pw-wrap { position: relative; }
 
-    .password-wrapper input { padding-right: 64px; }
+    .pw-wrap input { padding-right: 64px; }
 
     .password-toggle {
       position: absolute;
-      right: 14px;
+      right: 13px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(220, 14%, 50%);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--slate-400);
       cursor: pointer;
       font-family: 'Inter', sans-serif;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
       padding: 4px 2px;
       transition: color 0.15s;
     }
 
-    .password-toggle:hover { color: hsl(235, 60%, 50%); }
+    .password-toggle:hover { color: var(--brand-core); }
 
-    /* Forgot password row */
+    /* Forgot link */
     .forgot-row {
       display: flex;
       justify-content: flex-end;
@@ -305,61 +417,87 @@
     }
 
     .forgot-link {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 500;
-      color: hsl(235, 60%, 50%);
+      color: var(--brand-core);
       text-decoration: none;
       transition: color 0.15s;
     }
 
-    .forgot-link:hover {
-      color: hsl(235, 60%, 40%);
-      text-decoration: underline;
-    }
+    .forgot-link:hover { color: var(--brand-deep); text-decoration: underline; }
 
-    /* ── Primary button ── */
+    /* ── Sign In button ── */
     .btn-signin {
       width: 100%;
-      padding: 11px 20px;
-      background: linear-gradient(135deg, hsl(235, 58%, 30%) 0%, hsl(240, 62%, 42%) 100%);
-      color: #ffffff;
+      padding: 12px 20px;
+      background: linear-gradient(135deg,
+        var(--brand-deep)  0%,
+        var(--brand-core)  50%,
+        var(--brand-light) 100%
+      );
+      color: #fff;
       border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 600;
+      border-radius: 11px;
+      font-size: 14.5px;
+      font-weight: 700;
       font-family: 'Inter', sans-serif;
       cursor: pointer;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.25px;
+      position: relative;
+      overflow: hidden;
       box-shadow:
-        0 1px 2px rgba(30, 40, 120, 0.15),
-        0 4px 14px rgba(30, 40, 120, 0.28);
-      transition: box-shadow 0.2s ease, transform 0.12s ease, filter 0.2s ease;
+        0 1px 2px   rgba(14,22,80, 0.20),
+        0 4px 16px  rgba(26,36,144, 0.34),
+        inset 0 1px 0 rgba(255,255,255, 0.10);
+      transition: box-shadow 0.22s ease, transform 0.12s ease, filter 0.22s ease;
+    }
+
+    /* Moving shimmer on hover */
+    .btn-signin::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255,255,255, 0.16) 50%,
+        transparent 70%
+      );
+      background-size: 200% 100%;
+      opacity: 0;
     }
 
     .btn-signin:hover {
-      filter: brightness(1.1);
+      filter: brightness(1.09);
+      transform: translateY(-1.5px);
       box-shadow:
-        0 2px 4px rgba(30, 40, 120, 0.18),
-        0 8px 22px rgba(30, 40, 120, 0.34);
-      transform: translateY(-1px);
+        0 2px 4px   rgba(14,22,80, 0.22),
+        0 10px 32px rgba(26,36,144, 0.44),
+        inset 0 1px 0 rgba(255,255,255, 0.12);
+    }
+
+    .btn-signin:hover::after {
+      opacity: 1;
+      animation: shimmer 0.75s ease forwards;
     }
 
     .btn-signin:active {
       transform: translateY(0) scale(0.99);
-      box-shadow: 0 1px 4px rgba(30, 40, 120, 0.2);
+      box-shadow: 0 1px 6px rgba(14,22,80, 0.24);
+      filter: brightness(1);
     }
 
     .btn-signin:disabled {
-      opacity: 0.80;
+      opacity: 0.76;
       cursor: not-allowed;
       transform: none;
     }
 
-    .btn-signin .btn-spinner {
+    .btn-spinner {
       display: inline-block;
-      width: 15px;
-      height: 15px;
-      border: 2px solid rgba(255, 255, 255, 0.35);
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255, 0.28);
       border-top-color: #fff;
       border-radius: 50%;
       animation: spin 0.65s linear infinite;
@@ -367,12 +505,35 @@
       margin-right: 8px;
     }
 
+    /* Security micro-label below button */
+    .security-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 9px;
+      margin-bottom: 4px;
+    }
+
+    .security-row svg {
+      width: 11px;
+      height: 11px;
+      color: var(--slate-300);
+      flex-shrink: 0;
+    }
+
+    .security-row span {
+      font-size: 10.5px;
+      color: var(--slate-400);
+      letter-spacing: 0.1px;
+    }
+
     /* ── Divider ── */
     .divider {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin: 12px 0;
+      gap: 10px;
+      margin: 10px 0;
     }
 
     .divider::before,
@@ -380,54 +541,70 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: hsl(220, 18%, 88%);
+      background: var(--slate-200);
     }
 
     .divider span {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      color: hsl(220, 10%, 58%);
+      color: var(--slate-400);
       white-space: nowrap;
       letter-spacing: 0.2px;
     }
 
-    /* ── Secondary button ── */
+    /* ── Email link button ── */
     .btn-email-link {
       width: 100%;
-      padding: 11px 20px;
+      padding: 10px 20px;
       background: transparent;
-      color: hsl(220, 18%, 28%);
-      border: 1.5px solid hsl(220, 18%, 84%);
+      color: var(--slate-800);
+      border: 1.5px solid var(--slate-200);
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 500;
       font-family: 'Inter', sans-serif;
       cursor: pointer;
-      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-email-link svg {
+      width: 14px;
+      height: 14px;
+      color: var(--slate-400);
+      flex-shrink: 0;
+      transition: color 0.18s;
     }
 
     .btn-email-link:hover {
-      background: hsl(220, 22%, 96%);
-      border-color: hsl(220, 18%, 72%);
-      color: hsl(220, 18%, 18%);
+      background: var(--slate-100);
+      border-color: hsl(220,18%,78%);
+      color: var(--slate-950);
     }
+
+    .btn-email-link:hover svg { color: var(--brand-core); }
 
     /* ── Footer ── */
     .footer-text {
-      text-align: center;
-      font-size: 11.5px;
-      color: hsl(220, 10%, 62%);
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid hsl(220, 20%, 92%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 10.5px;
+      color: var(--slate-400);
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--slate-100);
       letter-spacing: 0.1px;
     }
 
-    /* ─────────────────────────────────────────────
+    /* ════════════════════════════════════
        RESPONSIVE
-    ───────────────────────────────────────────── */
-
-    /* Tablet — stack vertically */
+    ════════════════════════════════════ */
     @media (max-width: 768px) {
       body { align-items: flex-start; padding: 20px 16px; }
 
@@ -446,38 +623,28 @@
       }
 
       .login-image img.bg-photo { object-position: center 30%; }
-
       .image-logo { bottom: 20px; left: 20px; right: 20px; }
-
       .image-logo-label { font-size: clamp(20px, 5vw, 28px); }
 
       .login-form-section {
         flex: 1 1 auto;
         border-left: none;
-        border-top: 1px solid hsl(220, 16%, 91%);
+        border-top: 1px solid hsl(220,16%,91%);
         padding: 22px 24px 20px;
-        overflow-y: auto;
       }
     }
 
-    /* Mobile — compact */
     @media (max-width: 480px) {
       body { padding: 12px; }
-
       .login-card { border-radius: 20px; }
-
       .login-image { height: 150px; margin: 8px 8px 0 8px; border-radius: 8px; }
-
       .login-form-section { padding: 20px 20px 16px; }
     }
 
-    /* Very small — squeeze further */
     @media (max-width: 360px) {
       .login-form-section { padding: 20px 18px 18px; }
-
       .welcome-title { font-size: 20px; }
-
-      .welcome-subtitle { margin-bottom: 18px; }
+      .welcome-subtitle { margin-bottom: 14px; }
     }
   </style>
 </head>
@@ -485,22 +652,37 @@
 <body>
   <div class="login-card">
 
-    <!-- ── Left: Background Image + Logo overlay ── -->
+    <!-- ── Left: Image panel ── -->
     <div class="login-image">
       <picture>
         <source srcset="/assets/alhoty/images/inspector.webp" type="image/webp">
-        <img class="bg-photo" src="/assets/alhoty/images/inspector.jpg" alt="AlHoty Stanger Inspector" loading="eager" decoding="sync" fetchpriority="high" />
+        <img class="bg-photo" src="/assets/alhoty/images/inspector.jpg"
+          alt="AlHoty Stanger Inspector" loading="eager" decoding="sync" fetchpriority="high" />
       </picture>
 
-      <!-- brand block pinned to bottom of image panel -->
+      <!-- Brand block -->
       <div class="image-logo">
+        <div class="image-logo-line"></div>
         <div class="image-logo-label">NDT Management<br>System</div>
         <div class="image-logo-tagline">Al Hoty Stanger Ltd. Co.</div>
       </div>
     </div>
 
-    <!-- ── Right: Login Form ── -->
+    <!-- ── Right: Form panel ── -->
     <div class="login-form-section">
+
+      <!-- Brand header -->
+      <div class="form-brand">
+        <img class="brand-mark" src="/assets/alhoty/images/logo_new.png" alt="Al Hoty Stanger Logo" />
+
+        <div class="brand-text">
+          <span class="brand-name">Al Hoty Stanger Ltd. Co.</span>
+          <span class="brand-sub">NDT Inspection Platform</span>
+        </div>
+      </div>
+
+      <div class="form-sep"></div>
+
       <h1 class="welcome-title">Welcome Back</h1>
       <p class="welcome-subtitle">Sign in to your NDT Portal account</p>
 
@@ -509,16 +691,29 @@
 
       <form id="loginForm" onsubmit="handleLogin(event)">
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" id="email" name="usr" placeholder="Enter email" required
-            autocomplete="username" />
+          <label for="email">Email Address</label>
+          <div class="input-wrap">
+            <svg class="field-icon" viewBox="0 0 16 16" fill="none"
+              stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/>
+              <path d="M1.5 5.5 L8 10 L14.5 5.5" stroke-linejoin="round"/>
+            </svg>
+            <input type="text" id="email" name="usr"
+              placeholder="Enter your email" required autocomplete="username" />
+          </div>
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
-          <div class="password-wrapper">
-            <input type="password" id="password" name="pwd" placeholder="Enter your password" required
-              autocomplete="current-password" />
+          <div class="input-wrap pw-wrap">
+            <svg class="field-icon" viewBox="0 0 16 16" fill="none"
+              stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <rect x="2.5" y="7.5" width="11" height="7" rx="1.5"/>
+              <path d="M5 7.5 V5.5 a3 3 0 0 1 6 0 V7.5" stroke-linecap="round"/>
+              <circle cx="8" cy="11.2" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            <input type="password" id="password" name="pwd"
+              placeholder="Enter your password" required autocomplete="current-password" />
             <button type="button" class="password-toggle" onclick="togglePassword()">Show</button>
           </div>
         </div>
@@ -533,20 +728,33 @@
         </button>
       </form>
 
-      <div class="divider">
-        <span>Or continue with</span>
+      <!-- Security micro-label -->
+      <div class="security-row">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 1 L10.5 3.2 V6.8 C10.5 9 8.5 10.8 6 11.5 C3.5 10.8 1.5 9 1.5 6.8 V3.2 Z"
+            stroke-linejoin="round"/>
+          <path d="M4 6 L5.4 7.4 L8 4.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>SSL encrypted · Secure sign-in</span>
       </div>
 
+      <div class="divider"><span>Or continue with</span></div>
+
       <button class="btn-email-link" onclick="handleEmailLink()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/>
+          <path d="M1.5 5.5 L8 10 L14.5 5.5" stroke-linejoin="round"/>
+        </svg>
         Login with Email Link
       </button>
 
-      <p class="footer-text">&copy; 2025 AlHoty Stanger &middot; NDT Portal</p>
+      <p class="footer-text">
+        &copy; 2025 AlHoty Stanger &middot; NDT Portal
+      </p>
     </div>
   </div>
 
   <script>
-    // ── Helpers ──
     function showError(msg) {
       hideSuccess();
       var el = document.getElementById('loginError');
@@ -577,7 +785,6 @@
       return match ? decodeURIComponent(match[1]) : '';
     }
 
-    // ── Login ──
     function handleLogin(e) {
       e.preventDefault();
       hideError();
@@ -609,15 +816,13 @@
           if (res.ok) return res.json();
           return res.json().then(function (data) { throw data; });
         })
-        .then(function (data) {
-          // Keep spinner showing — page is about to navigate
+        .then(function () {
           document.getElementById('btnText').textContent = 'Redirecting\u2026';
           var params = new URLSearchParams(window.location.search);
           var redirect = params.get('redirect-to');
           window.location.href = redirect || '/app';
         })
         .catch(function (err) {
-          // Only reset button on failure
           btn.disabled = false;
           document.getElementById('btnSpinner').style.display = 'none';
           document.getElementById('btnText').textContent = 'Sign In';
@@ -626,7 +831,7 @@
             try {
               var msgs = JSON.parse(err._server_messages);
               message = JSON.parse(msgs[0]).message || message;
-            } catch (e) { }
+            } catch (e) {}
           } else if (err && err.message) {
             message = err.message;
           }
@@ -634,7 +839,6 @@
         });
     }
 
-    // ── Forgot Password ──
     function handleForgotPassword(e) {
       e.preventDefault();
       var email = document.getElementById('email').value.trim();
@@ -661,7 +865,6 @@
         });
     }
 
-    // ── Email Link Login ──
     function handleEmailLink() {
       var email = document.getElementById('email').value.trim();
       if (!email) {
@@ -687,7 +890,6 @@
         });
     }
 
-    // ── Password Toggle ──
     function togglePassword() {
       var input = document.getElementById('password');
       var btn = input.nextElementSibling;
