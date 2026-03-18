@@ -10,6 +10,7 @@
   <link rel="preload" as="image" href="/assets/alhoty/images/login_background_placeholder.webp" type="image/webp" />
   <link rel="preload" as="image" href="/assets/alhoty/images/login_background.webp" type="image/webp" />
   <link rel="preload" as="image" href="/assets/alhoty/images/inspector.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/alhoty/images/logo_new.png" type="image/png" fetchpriority="high" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Figtree:wght@400;600;700;800&display=swap');
@@ -78,8 +79,8 @@
       body::after { background-image: url('/assets/alhoty/images/login_background_hq.webp'); }
     }
 
-    @keyframes fadeInBg  { to { opacity: 1; } }
-    @keyframes fadeIn    { to { opacity: 1; } }
+    @keyframes fadeInBg  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
     @keyframes spin      { to { transform: rotate(360deg); } }
     @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
     @keyframes slideUp   {
@@ -139,6 +140,8 @@
       margin: 10px 0 10px 10px;
       border-radius: 14px;
       min-height: 0;
+      /* Placeholder colour shown instantly while inspector.webp loads */
+      background: linear-gradient(168deg, #1a2a5e 0%, #0e1650 100%);
     }
 
     .login-image img.bg-photo {
@@ -179,8 +182,7 @@
       height: 2px;
       background: linear-gradient(90deg, var(--brand-gold), transparent);
       margin-bottom: 13px;
-      opacity: 0;
-      animation: fadeIn 0.4s ease-out 0.22s forwards;
+      animation: fadeIn 0.4s ease-out 0.22s both;
     }
 
     .image-logo-label {
@@ -193,8 +195,7 @@
       text-shadow:
         0 1px 4px  rgba(0,0,0, 0.55),
         0 4px 24px rgba(0,0,0, 0.35);
-      opacity: 0;
-      animation: fadeIn 0.5s ease-out 0.3s forwards;
+      animation: fadeIn 0.5s ease-out 0.3s both;
     }
 
     .image-logo-tagline {
@@ -205,8 +206,7 @@
       letter-spacing: 3.5px;
       text-transform: uppercase;
       text-shadow: 0 1px 6px rgba(0,0,0, 0.5);
-      opacity: 0;
-      animation: fadeIn 0.5s ease-out 0.5s forwards;
+      animation: fadeIn 0.5s ease-out 0.5s both;
     }
 
     /* ════════════════════════════════════

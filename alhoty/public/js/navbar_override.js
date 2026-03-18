@@ -5,6 +5,10 @@
 
 frappe.provide("alhoty.toolbar");
 
+// Alias: some cached navbar HTML may call alhoy (without 't') — keep both working
+frappe.provide("alhoy.toolbar");
+Object.defineProperty(window, "alhoy", { get: function(){ return alhoty; }, configurable: true });
+
 // ── 1. Extend Toolbar — runs BEFORE instantiation, modifies boot data ──
 (function () {
 	const _OriginalToolbar = frappe.ui.toolbar.Toolbar;
@@ -20,8 +24,14 @@ frappe.provide("alhoty.toolbar");
 	};
 })();
 
-// ── 2. After toolbar renders, add logout class for red styling ──
+// ── 2. After toolbar renders: enforce not-full-width default + style logout ──
 $(document).on("toolbar_setup", function () {
+	// Default is NEVER full-width. Only apply full-width if the user explicitly
+	// clicked "Toggle Width" during this browser session (sessionStorage marker).
+	if (!sessionStorage.getItem("ndt_fw_on")) {
+		localStorage.setItem("container_fullwidth", "false");
+		document.body.classList.remove("full-width");
+	}
 	alhoty.toolbar._apply_logout_style();
 });
 
@@ -34,11 +44,7 @@ alhoty.toolbar._dropdown_items = function () {
 		},
 		{
 			item_label: "Toggle Width",
-			action: "frappe.ui.toolbar.toggle_full_width(); return false;",
-		},
-		{
-			item_label: "Toggle Theme",
-			action: "alhoty.toolbar.toggle_theme(); return false;",
+			action: "frappe.ui.toolbar.toggle_full_width(); var fw=localStorage.getItem('container_fullwidth')==='true'; if(fw){sessionStorage.setItem('ndt_fw_on','1');}else{sessionStorage.removeItem('ndt_fw_on');} return false;",
 		},
 		{
 			item_label: "Logout",

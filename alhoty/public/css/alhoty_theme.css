@@ -1,0 +1,331 @@
+/*
+ * alhoty_theme.css — Frappe CSS variable override
+ * Loaded globally via app_include_css in hooks.py (after Frappe core bundle).
+ * Replaces Frappe's default grey/black palette with the Al Hoty indigo-blue palette.
+ * Pattern follows al_amara project (same author, same Frappe v15 target).
+ *
+ * Palette:
+ *   --ahl-900  #0E1650  deep navy
+ *   --ahl-800  #1A2490  core indigo
+ *   --ahl-700  #2840D8  accent indigo  ← primary action colour
+ *   --ahl-600  #3B52E0  mid
+ *   --ahl-500  #4F6AE8  bright indigo
+ *   --ahl-400  #7A93F5  medium
+ *   --ahl-300  #A5B8FF  soft
+ *   --ahl-200  #D0DAFF  light
+ *   --ahl-100  #E5EAFF  pale
+ *   --ahl-50   #F0F3FF  near-white
+ */
+
+/* ════════════════════════════════════════════════════════════════════
+ * 1. BRAND TOKENS
+ * ════════════════════════════════════════════════════════════════════ */
+:root {
+    --ahl-900: #0E1650;
+    --ahl-800: #1A2490;
+    --ahl-700: #2840D8;
+    --ahl-600: #3B52E0;
+    --ahl-500: #4F6AE8;
+    --ahl-400: #7A93F5;
+    --ahl-300: #A5B8FF;
+    --ahl-200: #D0DAFF;
+    --ahl-100: #E5EAFF;
+    --ahl-50:  #F0F3FF;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+ * 2. LIGHT MODE — override Frappe's grey/black palette to indigo
+ * ════════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme="light"] {
+
+    /* ── Frappe's blue scale → indigo ── */
+    --blue-50:  #F0F3FF;
+    --blue-100: #E5EAFF;
+    --blue-200: #D0DAFF;
+    --blue-300: #A5B8FF;
+    --blue-400: #7A93F5;
+    --blue-500: #4F6AE8;
+    --blue-600: #2840D8;
+    --blue-700: #1A2490;
+    --blue-800: #131B6E;
+    --blue-900: #0E1650;
+
+    /* ── Primary action colour ── */
+    --primary:            #2840D8;
+    --primary-color:      #2840D8;
+    --btn-primary:        #2840D8;
+
+    /* ── Page / surface backgrounds ── */
+    --bg-color:           #F8F9FF;
+    --fg-color:           #FFFFFF;
+    --card-bg:            var(--fg-color);
+    --subtle-fg:          #F0F3FF;
+    --control-bg:         var(--ahl-50);
+    --control-bg-on-gray: var(--ahl-100);
+
+    /* ── Sidebar ── */
+    --sidebar-select-color: var(--ahl-100);
+
+    /* ── Borders ── */
+    --border-color:          #DDE2FF;
+    --btn-group-border-color: #C5CDFF;
+
+    /* ── Shadows (indigo-tinted) ── */
+    --shadow-xs: 0px 1px 2px rgba(14, 22, 80, 0.06);
+    --shadow-sm: 0px 1px 4px rgba(14, 22, 80, 0.08);
+    --shadow-md: 0px 2px 8px rgba(14, 22, 80, 0.10);
+    --shadow-lg: 0px 4px 16px rgba(14, 22, 80, 0.14);
+
+    /* ── Focus / highlight glow ── */
+    --highlight-shadow: 0 0 0 3px rgba(79, 106, 232, 0.20);
+
+    /* ── Text colours — keep dark for readability on light bg ── */
+    --heading-color:    #080E1E;
+    --text-color:       #1C2340;
+    --text-muted:       #48567A;
+    --text-light:       #8C97B8;
+    --text-dark:        var(--fg-color);
+
+    /* ── Disabled states ── */
+    --disabled-text-color:  var(--ahl-400);
+    --disabled-control-bg:  var(--ahl-50);
+
+    /* ── Alert info → indigo tint ── */
+    --alert-bg-info:   var(--ahl-50);
+    --alert-text-info: var(--ahl-700);
+
+    /* ── Misc ── */
+    --highlight-color: var(--ahl-50);
+    --bg-blue:         var(--ahl-100);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+ * 3. DARK MODE — deep-navy surfaces, bright indigo accents
+ * ════════════════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+
+    --blue-50:  #0E1650;
+    --blue-100: #141D6A;
+    --blue-200: #1A2490;
+    --blue-300: #2840D8;
+    --blue-400: #4F6AE8;
+    --blue-500: #7A93F5;
+    --blue-600: #A5B8FF;
+    --blue-700: #D0DAFF;
+    --blue-800: #E5EAFF;
+    --blue-900: #F0F3FF;
+
+    --primary:            #4F6AE8;
+    --primary-color:      #4F6AE8;
+    --btn-primary:        #4F6AE8;
+
+    --bg-color:           #060C1A;
+    --fg-color:           #0E1650;
+    --card-bg:            #111A3A;
+    --subtle-fg:          #0A1030;
+    --control-bg:         #111A3A;
+    --control-bg-on-gray: #1A2490;
+
+    --sidebar-select-color: #1A2490;
+
+    --border-color:           #1E2E80;
+    --btn-group-border-color:  #243080;
+
+    --shadow-xs: 0px 1px 2px rgba(4, 8, 28, 0.40);
+    --shadow-sm: 0px 1px 4px rgba(4, 8, 28, 0.50);
+    --shadow-md: 0px 2px 8px rgba(4, 8, 28, 0.55);
+    --shadow-lg: 0px 4px 16px rgba(4, 8, 28, 0.65);
+
+    --highlight-shadow: 0 0 0 3px rgba(79, 106, 232, 0.30);
+
+    --heading-color:   #E8EDFF;
+    --text-color:      #CBD4F8;
+    --text-muted:      #8C97B8;
+    --text-light:      #5A6A9C;
+    --text-dark:       var(--fg-color);
+
+    --disabled-text-color: #4A558A;
+    --disabled-control-bg: #0E1650;
+
+    --alert-bg-info:   #0E1650;
+    --alert-text-info: #A5B8FF;
+
+    --highlight-color: #111A3A;
+    --bg-blue:         #1A2490;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+ * 4. COMPONENT OVERRIDES — !important where Frappe hardcodes values
+ * ════════════════════════════════════════════════════════════════════ */
+
+/* ── Primary / Default buttons ── */
+.btn-primary,
+.btn.btn-primary {
+    background-color: var(--ahl-700) !important;
+    border-color:     var(--ahl-700) !important;
+    color:            #ffffff !important;
+}
+.btn-primary:hover,
+.btn.btn-primary:hover,
+.btn-primary:focus,
+.btn.btn-primary:focus {
+    background-color: var(--ahl-800) !important;
+    border-color:     var(--ahl-800) !important;
+}
+
+/* ── Default (secondary) button hover ── */
+.btn-default:hover,
+.btn.btn-default:hover {
+    background-color: var(--ahl-100) !important;
+    border-color:     var(--ahl-300) !important;
+    color:            var(--ahl-700) !important;
+}
+
+/* ── Text links ── */
+a,
+.like-disabled-link {
+    color: var(--ahl-700);
+}
+a:hover {
+    color: var(--ahl-800);
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+    outline: 2px solid var(--ahl-500);
+    outline-offset: 2px;
+}
+.form-control:focus,
+.input-with-feedback:focus {
+    border-color:  var(--ahl-500) !important;
+    box-shadow:    var(--highlight-shadow) !important;
+}
+
+/* ── Checkbox / radio accent ── */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    accent-color: var(--ahl-700);
+}
+
+/* ── Sidebar active / hover states ── */
+.desk-sidebar-item.selected,
+.desk-sidebar-item:hover,
+.sidebar-menu-item.selected,
+.sidebar-menu-item:hover {
+    background-color: var(--ahl-100) !important;
+    color:            var(--ahl-800) !important;
+}
+[data-theme="dark"] .desk-sidebar-item.selected,
+[data-theme="dark"] .desk-sidebar-item:hover,
+[data-theme="dark"] .sidebar-menu-item.selected,
+[data-theme="dark"] .sidebar-menu-item:hover {
+    background-color: var(--ahl-800) !important;
+    color:            #E8EDFF !important;
+}
+
+/* ── Indicator dots / badges ── */
+.indicator-pill.blue,
+.indicator.blue::before,
+.indicator-pill[data-color="blue"] {
+    background: var(--ahl-500) !important;
+    color: #ffffff !important;
+}
+
+/* ── List view selected row ── */
+.list-row-checkbox:checked ~ .list-row-col,
+.list-row.checked {
+    background-color: var(--ahl-50) !important;
+}
+[data-theme="dark"] .list-row.checked {
+    background-color: var(--ahl-900) !important;
+}
+
+/* ── Form section head / tab active ── */
+.form-tabs-list .nav-item .nav-link.active {
+    border-bottom-color: var(--ahl-700) !important;
+    color:               var(--ahl-700) !important;
+}
+
+/* ── Breadcrumb active ── */
+.breadcrumb-item.active,
+.breadcrumb > li + li::before {
+    color: var(--ahl-600);
+}
+
+/* ── Page head title ── */
+.page-title .title-text,
+.page-head h3 {
+    color: var(--heading-color);
+}
+
+/* ── Doctype Form toolbar "Save" / action buttons ── */
+.page-icon-group .btn-primary {
+    background-color: var(--ahl-700) !important;
+    border-color:     var(--ahl-700) !important;
+}
+
+/* ── Standard dialog OK / Save buttons ── */
+.modal-footer .btn-primary {
+    background-color: var(--ahl-700) !important;
+    border-color:     var(--ahl-700) !important;
+}
+
+/* ── Toast / alerts ── */
+.alert-info {
+    background-color: var(--alert-bg-info) !important;
+    border-color:     var(--ahl-300) !important;
+    color:            var(--alert-text-info) !important;
+}
+
+/* ── Progress / loading bar ── */
+.progress-bar {
+    background-color: var(--ahl-600) !important;
+}
+
+/* ── Tag / label pills ── */
+.label-info,
+.badge-info {
+    background-color: var(--ahl-500) !important;
+}
+
+/* ── Frappe Search bar suggestion highlight ── */
+.search-results .aa-item mark,
+.aa-Item-title mark {
+    color:            var(--ahl-700) !important;
+    background:       var(--ahl-50);
+}
+
+/* ── Navbar active indicator ── */
+.navbar-nav .active > a,
+.navbar-nav .active > a:hover {
+    color: var(--ahl-500) !important;
+}
+
+/* ── Desk navbar background — keep as-is (alhoty.bundle.scss sets height) ── */
+
+/* ════════════════════════════════════════════════════════════════════
+ * 5. DARK MODE COMPONENT TWEAKS
+ * ════════════════════════════════════════════════════════════════════ */
+[data-theme="dark"] .btn-default:hover,
+[data-theme="dark"] .btn.btn-default:hover {
+    background-color: var(--ahl-800) !important;
+    border-color:     var(--ahl-700) !important;
+    color:            #E8EDFF !important;
+}
+
+[data-theme="dark"] a {
+    color: var(--ahl-400);
+}
+[data-theme="dark"] a:hover {
+    color: var(--ahl-300);
+}
+
+[data-theme="dark"] .form-tabs-list .nav-item .nav-link.active {
+    border-bottom-color: var(--ahl-400) !important;
+    color:               var(--ahl-400) !important;
+}
+
+[data-theme="dark"] .list-row-checkbox:checked ~ .list-row-col {
+    background-color: rgba(79, 106, 232, 0.10) !important;
+}

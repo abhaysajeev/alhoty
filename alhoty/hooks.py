@@ -25,7 +25,10 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "alhoty.bundle.css"
+app_include_css = [
+    "alhoty.bundle.css",
+    "/assets/alhoty/css/alhoty_theme.css",
+]
 app_include_js = "/assets/alhoty/js/navbar_override.js"
 
 # include js, css files in header of web template
@@ -104,8 +107,8 @@ fixtures = [
         "Pending Approvals", "Pending Inspections", "Rejected Joints",
         "Total Branches", "Total MT Reports",
     ]]]},
-    # Dashboard widget — NDT Portal workspace is blank without this
-    {"dt": "Custom HTML Block", "filters": [["name", "=", "MT Branch Inspection"]]},
+    # Dashboard widgets — workspaces are blank without these
+    {"dt": "Custom HTML Block", "filters": [["name", "in", ["MT Branch Inspection", "NDT Analytics Dashboard"]]]},
 ]
 
 # Uninstallation

@@ -1,0 +1,100 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"aB3kD7mN9-\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"NDT Analytics Dashboard\",\"col\":12}}]",
+ "creation": "2026-03-18 08:55:00",
+ "custom_blocks": [
+  {
+   "custom_block_name": "NDT Analytics Dashboard",
+   "label": "NDT Analytics Dashboard"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "chart-line",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "NDT Analytics",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "MT Inspection",
+   "link_count": 0,
+   "link_to": "MT Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Work Order",
+   "link_count": 0,
+   "link_to": "Work Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Equipment Master",
+   "link_count": 0,
+   "link_to": "Equipment Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Branch Master",
+   "link_count": 0,
+   "link_to": "Branch Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Client Master",
+   "link_count": 0,
+   "link_to": "Client Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Master",
+   "link_count": 0,
+   "link_to": "Project Master",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-03-18 06:39:58.629727",
+ "modified_by": "Administrator",
+ "module": "AL HOTY",
+ "name": "NDT Analytics",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "res"
+  },
+  {
+   "role": "Administrator"
+  }
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "NDT Analytics"
+}
