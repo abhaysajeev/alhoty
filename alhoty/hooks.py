@@ -109,6 +109,8 @@ fixtures = [
     ]]]},
     # Dashboard widgets — workspaces are blank without these
     {"dt": "Custom HTML Block", "filters": [["name", "in", ["MT Branch Inspection", "NDT Analytics Dashboard"]]]},
+    # Workspaces — NDT Portal and NDT Analytics
+    {"dt": "Workspace", "filters": [["name", "in", ["NDT Portal", "NDT Analytics"]]]},
 ]
 
 # Uninstallation
