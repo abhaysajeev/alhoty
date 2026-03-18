@@ -51,45 +51,45 @@
     --blue-800: #131B6E;
     --blue-900: #0E1650;
 
-    /* ── Primary action colour ── */
-    --primary:            #2840D8;
-    --primary-color:      #2840D8;
-    --btn-primary:        #2840D8;
+    /* ── Primary action colour — dark navy to match login page ── */
+    --primary:            #1A2490;
+    --primary-color:      #1A2490;
+    --btn-primary:        #1A2490;
 
-    /* ── Page / surface backgrounds ── */
-    --bg-color:           #F8F9FF;
+    /* ── Page / surface backgrounds — keep neutral so form fields stay white ── */
+    --bg-color:           #F5F5F5;
     --fg-color:           #FFFFFF;
     --card-bg:            var(--fg-color);
-    --subtle-fg:          #F0F3FF;
-    --control-bg:         var(--ahl-50);
-    --control-bg-on-gray: var(--ahl-100);
+    --subtle-fg:          #F8F8F8;
+    --control-bg:         #FFFFFF;
+    --control-bg-on-gray: #F8F8F8;
 
     /* ── Sidebar ── */
     --sidebar-select-color: var(--ahl-100);
 
-    /* ── Borders ── */
-    --border-color:          #DDE2FF;
-    --btn-group-border-color: #C5CDFF;
+    /* ── Borders — keep neutral so form fields have normal grey borders ── */
+    --border-color:          #d1d5db;
+    --btn-group-border-color: #c8cdd6;
 
-    /* ── Shadows (indigo-tinted) ── */
-    --shadow-xs: 0px 1px 2px rgba(14, 22, 80, 0.06);
-    --shadow-sm: 0px 1px 4px rgba(14, 22, 80, 0.08);
-    --shadow-md: 0px 2px 8px rgba(14, 22, 80, 0.10);
-    --shadow-lg: 0px 4px 16px rgba(14, 22, 80, 0.14);
+    /* ── Shadows (subtle) ── */
+    --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-sm: 0px 1px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0px 2px 8px rgba(0, 0, 0, 0.10);
+    --shadow-lg: 0px 4px 16px rgba(0, 0, 0, 0.14);
 
     /* ── Focus / highlight glow ── */
-    --highlight-shadow: 0 0 0 3px rgba(79, 106, 232, 0.20);
+    --highlight-shadow: 0 0 0 3px rgba(26, 36, 144, 0.20);
 
-    /* ── Text colours — keep dark for readability on light bg ── */
-    --heading-color:    #080E1E;
-    --text-color:       #1C2340;
-    --text-muted:       #48567A;
-    --text-light:       #8C97B8;
+    /* ── Text colours — keep near-black for form fields ── */
+    --heading-color:    #1a1a1a;
+    --text-color:       #1a1a1a;
+    --text-muted:       #6b7280;
+    --text-light:       #9ca3af;
     --text-dark:        var(--fg-color);
 
     /* ── Disabled states ── */
-    --disabled-text-color:  var(--ahl-400);
-    --disabled-control-bg:  var(--ahl-50);
+    --disabled-text-color:  #9ca3af;
+    --disabled-control-bg:  #f3f4f6;
 
     /* ── Alert info → indigo tint ── */
     --alert-bg-info:   var(--ahl-50);
@@ -159,19 +159,19 @@
  * 4. COMPONENT OVERRIDES — !important where Frappe hardcodes values
  * ════════════════════════════════════════════════════════════════════ */
 
-/* ── Primary / Default buttons ── */
+/* ── Primary / Default buttons — dark navy matching login page ── */
 .btn-primary,
 .btn.btn-primary {
-    background-color: var(--ahl-700) !important;
-    border-color:     var(--ahl-700) !important;
+    background-color: #1A2490 !important;
+    border-color:     #1A2490 !important;
     color:            #ffffff !important;
 }
 .btn-primary:hover,
 .btn.btn-primary:hover,
 .btn-primary:focus,
 .btn.btn-primary:focus {
-    background-color: var(--ahl-800) !important;
-    border-color:     var(--ahl-800) !important;
+    background-color: #0E1650 !important;
+    border-color:     #0E1650 !important;
 }
 
 /* ── Default (secondary) button hover ── */
@@ -261,14 +261,14 @@ input[type="radio"]:checked {
 
 /* ── Doctype Form toolbar "Save" / action buttons ── */
 .page-icon-group .btn-primary {
-    background-color: var(--ahl-700) !important;
-    border-color:     var(--ahl-700) !important;
+    background-color: #1A2490 !important;
+    border-color:     #1A2490 !important;
 }
 
 /* ── Standard dialog OK / Save buttons ── */
 .modal-footer .btn-primary {
-    background-color: var(--ahl-700) !important;
-    border-color:     var(--ahl-700) !important;
+    background-color: #1A2490 !important;
+    border-color:     #1A2490 !important;
 }
 
 /* ── Toast / alerts ── */
