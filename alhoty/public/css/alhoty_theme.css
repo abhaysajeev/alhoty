@@ -35,6 +35,9 @@
 
 /* ════════════════════════════════════════════════════════════════════
  * 2. LIGHT MODE — override Frappe's grey/black palette to indigo
+ *    Only palette-critical variables here; shared form-field variables
+ *    (--text-color, --control-bg, --border-color, etc.) are left at
+ *    Frappe defaults to prevent bleed-through into form inputs.
  * ════════════════════════════════════════════════════════════════════ */
 :root,
 [data-theme="light"] {
@@ -56,40 +59,11 @@
     --primary-color:      #1A2490;
     --btn-primary:        #1A2490;
 
-    /* ── Page / surface backgrounds — keep neutral so form fields stay white ── */
-    --bg-color:           #F5F5F5;
-    --fg-color:           #FFFFFF;
-    --card-bg:            var(--fg-color);
-    --subtle-fg:          #F8F8F8;
-    --control-bg:         #FFFFFF;
-    --control-bg-on-gray: #F8F8F8;
-
     /* ── Sidebar ── */
     --sidebar-select-color: var(--ahl-100);
 
-    /* ── Borders — keep neutral so form fields have normal grey borders ── */
-    --border-color:          #d1d5db;
-    --btn-group-border-color: #c8cdd6;
-
-    /* ── Shadows (subtle) ── */
-    --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.06);
-    --shadow-sm: 0px 1px 4px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0px 2px 8px rgba(0, 0, 0, 0.10);
-    --shadow-lg: 0px 4px 16px rgba(0, 0, 0, 0.14);
-
     /* ── Focus / highlight glow ── */
     --highlight-shadow: 0 0 0 3px rgba(26, 36, 144, 0.20);
-
-    /* ── Text colours — keep near-black for form fields ── */
-    --heading-color:    #1a1a1a;
-    --text-color:       #1a1a1a;
-    --text-muted:       #6b7280;
-    --text-light:       #9ca3af;
-    --text-dark:        var(--fg-color);
-
-    /* ── Disabled states ── */
-    --disabled-text-color:  #9ca3af;
-    --disabled-control-bg:  #f3f4f6;
 
     /* ── Alert info → indigo tint ── */
     --alert-bg-info:   var(--ahl-50);
@@ -182,13 +156,31 @@
     color:            var(--ahl-700) !important;
 }
 
-/* ── Text links ── */
-a,
-.like-disabled-link {
+/* ── Navigation links — indigo (scoped away from form controls) ── */
+.desk-sidebar a,
+.navbar a,
+.breadcrumb a,
+.widget-head a,
+.form-footer a,
+.comment-box a,
+.notification-item a {
     color: var(--ahl-700);
 }
-a:hover {
+.desk-sidebar a:hover,
+.navbar a:hover,
+.breadcrumb a:hover,
+.widget-head a:hover,
+.form-footer a:hover,
+.comment-box a:hover,
+.notification-item a:hover {
     color: var(--ahl-800);
+}
+
+/* ── Form control links stay black (inherit text-color, not indigo) ── */
+.frappe-control a,
+.control-value a,
+.like-disabled-link {
+    color: inherit;
 }
 
 /* ── Focus ring ── */
@@ -314,11 +306,28 @@ input[type="radio"]:checked {
     color:            #E8EDFF !important;
 }
 
-[data-theme="dark"] a {
+[data-theme="dark"] .desk-sidebar a,
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] .breadcrumb a,
+[data-theme="dark"] .widget-head a,
+[data-theme="dark"] .form-footer a,
+[data-theme="dark"] .comment-box a,
+[data-theme="dark"] .notification-item a {
     color: var(--ahl-400);
 }
-[data-theme="dark"] a:hover {
+[data-theme="dark"] .desk-sidebar a:hover,
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .breadcrumb a:hover,
+[data-theme="dark"] .widget-head a:hover,
+[data-theme="dark"] .form-footer a:hover,
+[data-theme="dark"] .comment-box a:hover,
+[data-theme="dark"] .notification-item a:hover {
     color: var(--ahl-300);
+}
+[data-theme="dark"] .frappe-control a,
+[data-theme="dark"] .control-value a,
+[data-theme="dark"] .like-disabled-link {
+    color: inherit;
 }
 
 [data-theme="dark"] .form-tabs-list .nav-item .nav-link.active {
